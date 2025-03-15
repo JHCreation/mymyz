@@ -1,0 +1,32 @@
+.ql-snow .ql-stroke {
+  stroke: oklch(var(--bc));
+}
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+  fill: oklch(var(--bc));
+}
+.ql-snow .ql-picker-label::before {
+  color: oklch(var(--bc));
+}
+
+#editor-resizer .btn { 
+  height: auto;
+  min-height: auto;
+  line-height: 2;
+}
+#editor-resizer .group {
+  align-items: center;
+  line-height: 2;
+}
+
+
+.ql-snow .ql-picker.ql-font { font-size: 12px;}
+.ql-container {
+  font-family: 'SUITE';
+}
+
+.ql-font-SUITE,
+.ql-picker-item[data-value="SUITE"] { font-family: 'SUITE'; }
+.ql-font-GmarketSans,
+.ql-picker-item[data-value="GmarketSans"] { font-family: 'GmarketSans'; }
+.ql-font-Pretendard,
+.ql-picker-item[data-value="Pretendard"] { font-family: 'Pretendard'; }

@@ -1,0 +1,5 @@
+.file-inputs-dragged {
+  z-index: 9999;
+  /* border: 1px solid var(--color-input); */
+  background-color: var(--color-draggable);
+}

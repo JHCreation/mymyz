@@ -1,0 +1,26 @@
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+.rdp-root {
+  --rdp-today-color: theme(colors.error);
+  --rdp-selected-font: bold .75em var(--rdp-font-family);
+  --rdp-range_middle-font: normal .75em var(--rdp-font-family);
+  --rdp-accent-background-color: theme(colors.gray.100);
+}
+.rdp-day_button {
+  width: theme(space.8);
+  height: theme(space.8);
+}
+/* .rdp-selected {
+  font-size: theme(fontSize.xs);
+} */
+
+.rdp-range_start .rdp-day_button,
+.rdp-range_end .rdp-day_button {
+  background-color: theme(colors.primary);
+  border-color: theme(colors.primary);
+}
+
+.rdp-range_start .rdp-day_button { border-radius: 100% 0 0 100%; }
+.rdp-range_end .rdp-day_button { border-radius: 0 100% 100% 0; }
+.rdp-range_start.rdp-range_end .rdp-day_button { border-radius: 100%; }

@@ -22,3 +22,10 @@ export default defineConfig({
     tsconfigPaths(),
   ],
 });
+
+declare global {
+  interface Window {
+    ENV: any;
+    
+  }
+}
