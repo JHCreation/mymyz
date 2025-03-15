@@ -3,3 +3,6 @@ node_modules
 /.cache
 /build
 .env
+.env.development.local
+.env.production.local
+.env*.local
