@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Archive production build
-        run: tar -czf build.tar.gz .
+        run: tar --exclude='./node_modules' --exclude='./.git' --exclude='.github' --exclude='.gitignore' -czf build.tar.gz .
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
