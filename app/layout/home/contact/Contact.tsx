@@ -104,7 +104,7 @@ export default function Contact () {
       ref={containerRef} 
       className="w-full mt-nav"
     >
-      <div className=" w-full max-w-container mx-auto pt-40 pb-10 px-10" >
+      <div className=" w-full max-w-container mx-auto pt-40 pb-10 px-3 md:px-10" >
         
         <div className="w-full  flex">
           
@@ -118,7 +118,7 @@ export default function Contact () {
             <animated.div 
               style={motion(0)}
             >
-              <div className="text-left max-w-[900px] uppercase font-type-en text-title font-extrabold ">
+              <div className="text-left max-w-[900px] uppercase font-type-en text-4xl md:text-title font-extrabold ">
                 <RisingText 
                   text={'memyze-'}
                   className="leading-[.8]"
@@ -139,7 +139,7 @@ export default function Contact () {
                 
                 
               </div>
-              <div className="text-left mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-title font-thin ">
+              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-4xl md:text-title font-thin ">
 
                 <RisingText 
                   text={'i wish award we\'ll make it'}
@@ -156,10 +156,10 @@ export default function Contact () {
             <div className="break-keep ml-auto w-full max-w-[800px]">
               <animated.div 
                 style={motion(1)}
-                className={'border-t pt-12 mt-12 ml-auto w-full '}
+                className={'border-t pt-8 mt-8 md:pt-12 md:mt-12 ml-auto w-full '}
               >
                 <div className="max-w-[540px]">
-                  <RisingText text={'우리는 창작을 사랑합니다. 애증과도 같은 관계죠. 창작의 과정을 통해 훌륭한 프로젝트를 완성하는 경험으로 여러분과 함께 성장하고 발전해 나가고 싶습니다.'} startDelay={100} className="text-2xl"/>
+                  <RisingText text={'우리는 창작을 사랑합니다. 애증과도 같은 관계죠. 창작의 과정을 통해 훌륭한 프로젝트를 완성하는 경험으로 여러분과 함께 성장하고 발전해 나가고 싶습니다.'} startDelay={100} className="text-xl md:text-2xl"/>
                 </div>
               </animated.div>
 
