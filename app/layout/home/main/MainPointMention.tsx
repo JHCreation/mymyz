@@ -90,7 +90,7 @@ export default function MainPointMention () {
               <RisingText text={'보고 계신 웹사이트가 저희의 첫 포트폴리오 입니다.'}/>
               {/* <RisingText text={'여러분만의 것을 만들어 보세요.'}/> */}
               <RisingText text={'아직 비싸지 않아요.'}/>
-              <RisingText text={'지금이 기회 입니다.'}/>
+              <RisingText text={'지금이 기회 입니다!'}/>
             </div>
             {/* <div className="font-[HSBombaram21-Regular] font-black text-[4em] leading-[1.1] text-center">
               <RisingText text={'The website you\'re looking at is our first portfolio.'}/>
