@@ -16,31 +16,59 @@ export default function Intro ({ setOn }:any) {
     // height: on ? '0px' :'100dvh',
     // ref: springRef,
     from: { per: 0, x: 0, y: 0, z: 0 },
-    to: { per: 1, x: 1, y: 1, z: 1 },
+    to: { per: 1 },
     config: key=>{
       if( key == 'per' ) return { duration: dur }
+      // if( key == 'y' ) return { duration: 500 }
       return 500
     },
-    delay: (key)=> {
+    /* delay: (key)=> {
       if( key == 'x' ) return dur+500
       if( key == 'y' ) return dur+1000
       if( key == 'z' ) return dur+1100
       return 0
-    },
-    onStart(result, ctrl, item) {
+    }, */
+    /* onStart(result, ctrl, item) {
       // console.log('intro start', result, ctrl, item )
-    },
-    onRest(result, ctrl, item) {
+    }, */
+    /* onRest(result, ctrl, item) {
         // console.log('intro end', result, ctrl, item)
-        console.log(currentSize)
-        api.start({ to: { size: mediaQuery.md ? 2 : 2.5 }})
+        if( result.value.per == 1 ) {
+          console.log('intro end', result.value)
+        }
+        
+        
+    }, */
+    onChange: {
+      z: (result, ctrl, item)=> {
+        console.log('intro change', result)
+        setOn(true)
+      }
     },
-    onChange(result, ctrl, item) {
+    onRest: {
+      per: (result, ctrl, item)=> {
+        api.start({ to: { size: mediaQuery.md ? 2 : 2.5 },
+          // delay: 300
+        })
+        action.start({ x: 1 })
+      },
+      x: (result, ctrl, item)=> {
+        action.start({ y: 1 })
+      },
+      y: (result, ctrl, item)=> {
+        action.start({ z: 1 })
+      },
+      z: (result, ctrl, item)=> {
+        console.log('intro end', result)
+        setOn(true)
+      }
+    },
+    /* onChange(result, ctrl, item) {
       // console.log(mediaQuery, currentSize)
       // console.log('intro resolve', result, ctrl, item)
       // console.log('intro change', result.value)
       
-    },
+    }, */
     
     // delay: 2000
   }), [mediaQuery])
@@ -71,10 +99,10 @@ export default function Intro ({ setOn }:any) {
     <animated.div 
       style={{
         height: spring.y.to(val=> `${(1-val)*100}%`),
-        y: spring.z.to(val=> {
+        /* y: spring.z.to(val=> {
           if( val == 1 ) setOn(true)
           return 0
-        })
+        }) */
       }}
       className="fixed w-full h-dvh z-50 bg-neutral bg-opacity-10- flex items-center justify-center overflow-hidden"
     >
@@ -100,14 +128,14 @@ export default function Intro ({ setOn }:any) {
               <Logo />
             </div>)
           }
-            <div className="fill-white w-[10vw] opacity-0">
+            <div className="fill-white w-[20vw] md:w-[10vw] opacity-0">
               <Logo />
             </div>
           <animated.div
             style={{
               x: spring.x.to(val=> {
                 console.log(mediaQuery.md)
-                const gap= mediaQuery.md ? 35 : 40
+                const gap= mediaQuery.md ? 35 : 20
                 return `${(1-val)*gap}%`
               }),
               // x: spring.x.to(val=> `calc(${(1-val)}% + 30vw)`),
@@ -134,13 +162,13 @@ export default function Intro ({ setOn }:any) {
           </animated.div> 
         </div>
 
-        <div className="min-w-[10vw]">
+        <div className="min-w-[20vw] md:min-w-[10vw]">
           <animated.div 
             style={{
               scale: spring.per.to(val=> `${(val)*100}%`),
               // height: spring.per.to(val=> `${val*100}%`)
             }}
-            className="text-white text-[2.8vw] font-black origin-bottom-left leading-[.8]">
+            className="text-white text-[5.6vw] md:text-[2.8vw] font-black origin-bottom-left leading-[.8]">
               {spring.per.to(val=> `${Math.floor(val*100)}%`)}
           </animated.div>
         </div>

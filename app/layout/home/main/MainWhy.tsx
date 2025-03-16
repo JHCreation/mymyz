@@ -102,9 +102,9 @@ function Parallax ({ scrolls }) {
           why && why.map((service, key)=> {
             return ( */}
               <div className="md:flex flex-col md:flex-row relative w-full h- ">
-                <section className='w-full md:w-1/2 mr-20'>
-                  <div className="md:sticky top-nav bg-paper z-10 ">
-                    <div className="md:flex">
+                <section className='absolute h-[600dvh] md:h-auto md:relative w-full md:w-1/2 mr-20'>
+                  <div className="sticky top-nav bg-paper z-10 ">
+                    <div className="flex pt-1.5">
                       <div className="font-black text-5xl md:text-[2em] font-type-1 mr-2" >
                         <RisingText text={'04'} className="font-thin text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"/>
                       </div>
@@ -116,7 +116,7 @@ function Parallax ({ scrolls }) {
                       </div>
                     </div>
 
-                    <div className="border-t mt-3 md:mt-8 pt-2 md:pt-4 max-w-[260px] ml-auto">
+                    <div className="border-t mt-2 md:mt-8 pt-1 md:pt-4 max-w-[260px] ml-auto">
                       <RisingText 
                         text={'왜 꼭 우리여야 할까?'}
                         className="md:text-sm"
@@ -125,7 +125,7 @@ function Parallax ({ scrolls }) {
                   </div>
       
                 </section>
-                <div className="w-full md:w-1/2 top-[4em] left-0 relative md:top-auto break-keep">
+                <div className="w-full md:w-1/2 top-[14em] left-0 relative md:top-auto break-keep">
                   
                 {/* {
                   whyMemyze.map(why=> {

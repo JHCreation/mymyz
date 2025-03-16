@@ -60,15 +60,15 @@ export const Menu= ({ active, setActive, handleClick })=> {
                     // { scaleY: 1, transformOrigin: '50% 0%', config: { duration: 0 } },
                 ],
                 onStart(result, ctrl, item) {
-                  console.log('open start', result, ctrl, item )
+                  // console.log('open start', result, ctrl, item )
                   setDur(true)
                 },
                 onRest(result, ctrl, item) {
-                    console.log('open end', result, ctrl, item)
+                    // console.log('open end', result, ctrl, item)
                 },
                 onResolve(result, ctrl, item) {
                     setDur(false)
-                    console.log('open resolve', result, ctrl, item)
+                    // console.log('open resolve', result, ctrl, item)
                 },
             })
             textApi.start(riging_text_to(100, 500))
@@ -82,16 +82,16 @@ export const Menu= ({ active, setActive, handleClick })=> {
                     { scaleY: 0, transformOrigin: '50% 0%', delay: 200,  config: { duration: 600 } },
                 ],
                 onStart(result, ctrl, item) {
-                  console.log('close start', result, ctrl, item )
+                  // console.log('close start', result, ctrl, item )
                   setDur(true)
                 },
                 onRest(result, ctrl, item) {
                     setView(false)
                     setDur(false)
-                    console.log('close end', result, ctrl, item)
+                    // console.log('close end', result, ctrl, item)
                 },
                 onResolve(result, ctrl, item) {
-                    console.log('close resolve', result, ctrl, item)
+                    // console.log('close resolve', result, ctrl, item)
                 },
             })
             textApi.start({

@@ -239,7 +239,7 @@ export function MainWork () {
       }
       {
         !isPending && 
-        <ul className="flex flex-wrap ">
+        <ul className="grid grid-cols-2 md:grid-cols-3 ">
           
           {
             // style.current && 
@@ -253,7 +253,7 @@ export function MainWork () {
 
               }
               return (
-                <li key={i} className="w-1/3 py-5 pr-3"
+                <li key={i} className="md:w-full py-5 pr-3"
                 
                   style={{paddingLeft: `${gridStyle[i][0]}px`}}
                   // style={{paddingLeft: `${_.random(4, 1)*10}px`}}
@@ -382,7 +382,7 @@ const TextBox= ({ data })=> {
       {/* </div> */}
 
       <div className="font-type-2 text-sm font-thin mt-3">
-        <RisingText text={data.key} className=""/>
+        <RisingText text={data.key} className="" textClassName="break-keep"/>
         {/* <RisingText text={'design'} className=""/> */}
       </div>
 
