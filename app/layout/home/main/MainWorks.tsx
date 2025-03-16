@@ -253,7 +253,7 @@ export function MainWork () {
 
               }
               return (
-                <li key={i} className="md:w-full py-5 pr-3"
+                <li key={i} className="md:w-full py-2 md:py-5 pr-1 md:pr-3"
                 
                   style={{paddingLeft: `${gridStyle[i][0]}px`}}
                   // style={{paddingLeft: `${_.random(4, 1)*10}px`}}

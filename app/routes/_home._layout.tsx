@@ -34,7 +34,7 @@ const meta: MetaFunction = () => {
 const PAGE= 0;
 const SIZE= 9;
 const gridStyle= [...new Array(SIZE)]?.map(v=> {
-  return [_.random(4, 1)*10, _.random(22, 8)*20, _.random(6, 4)]
+  return [_.random(4, 1)*10, _.random(12, 3)*20, _.random(6, 4)]
 })
 export async function loader ({
   params,
