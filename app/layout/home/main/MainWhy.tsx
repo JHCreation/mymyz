@@ -125,7 +125,7 @@ function Parallax ({ scrolls }) {
                   </div>
       
                 </section>
-                <div className="w-full md:w-1/2 top-[14em] left-0 relative md:top-auto break-keep">
+                <div className="w-full md:w-1/2 top-[14em] pb-[14em] left-0 relative md:top-auto break-keep">
                   
                 {/* {
                   whyMemyze.map(why=> {

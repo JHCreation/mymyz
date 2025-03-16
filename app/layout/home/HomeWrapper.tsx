@@ -31,7 +31,8 @@ export const ScreenContext= createContext<ScreenContextProp>({
   windowSize: null
 }) */
 
-
+const duration= 1800;
+const delay= 600;
 export default function HomeWrapper ({init, children}) {
   const { width, height }= useResize({})
   const [windowSize, setWindowSize] = useState<Size|null>(null);
@@ -49,8 +50,26 @@ export default function HomeWrapper ({init, children}) {
     if( body?.current ) setRootContainer(body.current)
   }, [body.current])
 
+  const navigate = useNavigate();
   const [transition, setTransition]= useState<any>(false)
-  // console.log(body.current)
+  
+  const handleClick = (menu)=> (event) => {
+    event.preventDefault();
+
+    setTransition(menu)
+    let trTiming;
+    trTiming= setTimeout(e=> {
+      setTransition(false)
+      clearTimeout(trTiming)
+    }, duration)
+
+    let navTiming;
+    navTiming= setTimeout(() => {
+      navigate(menu.to)
+      clearTimeout(navTiming)
+    }, delay);
+    
+  };
   return (
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
 
@@ -59,13 +78,13 @@ export default function HomeWrapper ({init, children}) {
       data-theme="lemonade"
     >
       <div id="custom-root-id" className="fixed top-0 left-0 z-30 w-dvw" ref={body}>
-        <Navigation root={body.current}/>
+        <Navigation root={body.current} transition={transition} menuClick={handleClick}/>
       </div>
 
       {children}
       {/* <Outlet /> */}
       <MainFooter />
-      <Footer />
+      <Footer transition={transition} menuClick={handleClick} />
 
       <AnimatedCursor 
         trailingSpeed={5}

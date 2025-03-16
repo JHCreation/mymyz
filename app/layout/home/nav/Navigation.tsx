@@ -14,7 +14,7 @@ import Hamburger2 from "./Hamburger2";
 import { Menu } from "./Menu";
 const duration= 1800;
 const delay= 600;
-export const Navigation= ({ root })=> {
+export const Navigation= ({ root, transition, menuClick })=> {
   const {setRootLenis}= useRootLenis();
   const rootLenis= useLenis();
   // setRootLenis(rootLenis)
@@ -22,26 +22,7 @@ export const Navigation= ({ root })=> {
     if( rootLenis ) setRootLenis(rootLenis)
   }, [rootLenis])
 
-  const navigate = useNavigate();
-  const [transition, setTransition]= useState<any>(false)
   
-  const handleClick = (menu)=> (event) => {
-    event.preventDefault();
-
-    setTransition(menu)
-    let trTiming;
-    trTiming= setTimeout(e=> {
-      setTransition(false)
-      clearTimeout(trTiming)
-    }, duration)
-
-    let navTiming;
-    navTiming= setTimeout(() => {
-      navigate(menu.to)
-      clearTimeout(navTiming)
-    }, delay);
-    
-  };
   const [active, setActive]= useState(false)
   return (
     <ReactLenis root>
@@ -61,7 +42,7 @@ export const Navigation= ({ root })=> {
             {/* <Hamburger2 size={40} active={active} setActive={setActive}/> */}
             <Hamburger1 size={50} active={active} setActive={setActive}/>
           </MagneticCursor>
-          <Menu active={active} setActive={setActive} handleClick={handleClick} />
+          <Menu active={active} setActive={setActive} handleClick={menuClick} />
           {/* <Hamburger size={40} active={active} setActive={setActive}/> */}
 
           {/* <div className="navbar-start w-auto md:hidden-">

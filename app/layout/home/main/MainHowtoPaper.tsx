@@ -132,13 +132,13 @@ export default function MainHowtoPaper () {
 const Type02= ({val})=> {
   return (
     <div className="">
-      <div className="flex flex-col px-4 md:px-8 py-5 md:py-10 w-full max-w-container-ms mx-auto">
+      <div className="flex flex-col px-4 md:px-8 py-3 md:py-5 w-full max-w-container-ms mx-auto">
         
         <div className="flex flex-col ">
           <div className="font-type-en text text-4xl md:text-title text-black leading-none font-extrabold mt-2">{val.title}</div>
         </div>
 
-        <div className=" w-full max-w-[800px] border-t pt-2 mt-8 ml-auto">
+        <div className=" w-full max-w-[800px] border-t pt-2 mt-4 md:mt-8 ml-auto">
           <div className="text-xs">
             {val.name}
           </div>

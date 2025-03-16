@@ -6,6 +6,7 @@ import { LinkText_2 } from "~/components/ui/LinkText"
 import LinkArrow from "~/components/ui/LinkArrow"
 import { MagneticCursor } from "~/components/cursor/MagneticCursor"
 import { Link } from "@remix-run/react"
+import { route } from "../route";
 
 const scrolls= new SectionScroll({})
 
@@ -23,12 +24,8 @@ const snsLink= [
     to: 'mailto:corenzomarket@naver.com'
   },
 ]
-const links= [
-  { name: 'Home', to: '/' },
-  { name: 'About', to: '/about' },
-  { name: 'Contact', to: '/contact' },
-]
-export default function Footer () {
+
+export default function Footer ({transition, menuClick}) {
   const {screen, windowSize} = useContext(ScreenContext)
   const scroll= useScroll({
     onChange: (result, ctrl, item)=> {
@@ -109,9 +106,19 @@ export default function Footer () {
               </div>
               <ul className="text-4xl md:text-[20svh] md:leading-none">
                 {
-                  links.map(link=> <li key={link.to} className="border-b py-2 md:py-0">
+                  route.map(link=> <li key={link.to} className="border-b py-2 md:py-0">
                     <MagneticCursor className="inline-block custom-hover-lg">
-                      <Link to={link.to} className="">{link.name}</Link>
+                      {/* <Link to={link.to} className="">{link.name}</Link> */}
+                      <Link
+                        to={link.to}
+                        onClick={e=> {
+                          menuClick(link)(e)
+                        }}
+                        prefetch="intent"
+                        // preventScrollReset
+                      >
+                        {link.name}
+                      </Link>
                     </MagneticCursor>
                   </li>)
                 }
