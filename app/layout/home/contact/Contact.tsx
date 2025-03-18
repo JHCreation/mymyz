@@ -143,7 +143,7 @@ export default function Contact () {
               <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-5xl md:text-title font-thin ">
 
                 <RisingText 
-                  text={'i wish award we\'ll make it!'}
+                  text={'i wish award we\'ll make it'}
                   className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent leading-[.75]"
                   textClassName="leading- pt-3 pl-1 italic"
                   startDelay={delay}
