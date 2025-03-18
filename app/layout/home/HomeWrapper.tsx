@@ -71,6 +71,7 @@ export default function HomeWrapper ({init, children}) {
     }, delay);
     
   };
+  console.log(isMobile)
   return (
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
 
@@ -80,8 +81,8 @@ export default function HomeWrapper ({init, children}) {
     >
       <div id="custom-root-id" className="fixed top-0 left-0 z-30 w-dvw" ref={body}>
         <Navigation root={body.current} transition={transition} menuClick={handleClick}/>
+        {isMobile.toString()}
       </div>
-
       {children}
       {/* <Outlet /> */}
       <MainFooter />
