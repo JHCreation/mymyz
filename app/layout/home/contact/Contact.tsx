@@ -104,9 +104,9 @@ export default function Contact () {
       ref={containerRef} 
       className="w-full mt-nav"
     >
-      <div className=" w-full max-w-container mx-auto pt-40 pb-10 px-3 md:px-10" >
+      <div className=" w-full max-w-container mx-auto py-0 md:pt-40 pb-10 px-3 md:px-10" >
         
-        <div className="w-full  flex">
+        <div className="w-full flex">
           
           {/* <animated.div 
             style={motion(0)}
@@ -114,18 +114,19 @@ export default function Contact () {
           >
             <RisingText text={'01'} className="text-stroke-[1px] font-thin text-stroke-gray-500 text-stroke-fill-transparent"/>
           </animated.div> */}
-          <div className="w-full">
+          <div className="w-full flex flex-col">
             <animated.div 
               style={motion(0)}
+              className={'h-dvh md:min-h-auto flex flex-col justify-center'}
             >
-              <div className="text-left max-w-[900px] uppercase font-type-en text-4xl md:text-title font-extrabold ">
+              <div className="text-left max-w-[900px] uppercase font-type-en text-6xl md:text-title font-extrabold ">
                 <RisingText 
-                  text={'memyze-'}
+                  text={'myz-'}
                   className="leading-[.8]"
                   startDelay={delay}
                 />
                 
-                <a href="mailto:corenzohouse@naver.com"
+                <span
                   className="hover:text-stroke-[.8px] hover:text-transparent duration-500"
                 >
                   <RisingText 
@@ -135,14 +136,14 @@ export default function Contact () {
                     delay={100}
                     
                   />
-                </a>
+                </span>
                 
                 
               </div>
-              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-4xl md:text-title font-thin ">
+              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-5xl md:text-title font-thin ">
 
                 <RisingText 
-                  text={'i wish award we\'ll make it'}
+                  text={'i wish award we\'ll make it!'}
                   className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent leading-[.75]"
                   textClassName="leading- pt-3 pl-1 italic"
                   startDelay={delay}

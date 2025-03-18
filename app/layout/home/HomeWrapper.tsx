@@ -8,7 +8,7 @@ import AnimatedCursor from "react-animated-cursor";
 import {FloatingOverlay, FloatingPortal} from '@floating-ui/react';
 import { createContext, useEffect, useRef, useState } from "react";
 import { Navigation } from "./nav/Navigation";
-import { useRootContainer } from "~/store/store";
+import { useDeviceStore, useRootContainer } from "~/store/store";
 import 'react-toastify/dist/ReactToastify.css';
 import './tastifyStyle.css';
 import MainFooter from "./main/MainFooter";
@@ -34,6 +34,7 @@ export const ScreenContext= createContext<ScreenContextProp>({
 const duration= 1800;
 const delay= 600;
 export default function HomeWrapper ({init, children}) {
+  const isMobile = useDeviceStore((state) => state.isMobile);
   const { width, height }= useResize({})
   const [windowSize, setWindowSize] = useState<Size|null>(null);
   useEffect(()=> {
@@ -86,58 +87,63 @@ export default function HomeWrapper ({init, children}) {
       <MainFooter />
       <Footer transition={transition} menuClick={handleClick} />
 
-      <AnimatedCursor 
-        trailingSpeed={5}
-        innerSize={10}
-        outerSize={25}
-        color='255,255,255'
-        outerAlpha={1}
-        innerScale={1}
-        outerScale={2}
-        clickables={[
-          'a',
-          'input[type="text"]',
-          'input[type="email"]',
-          'input[type="number"]',
-          'input[type="submit"]',
-          'input[type="image"]',
-          'label[for]',
-          'select',
-          'textarea',
-          'button',
-          '.links',
-          {
-            target: '.custom-hover',
-            innerScale: 1,
-            outerScale: 2,
-            outerStyle: {
-              backgroundColor: '#00ff00f6',
-              mixBlendMode: 'exclusion',
+      {
+      // isMobile && 
+      <div className={`${isMobile ? 'hidden' : ''}`}>
+        <AnimatedCursor
+          trailingSpeed={5}
+          innerSize={10}
+          outerSize={25}
+          color='255,255,255'
+          outerAlpha={1}
+          innerScale={1}
+          outerScale={2}
+          clickables={[
+            'a',
+            'input[type="text"]',
+            'input[type="email"]',
+            'input[type="number"]',
+            'input[type="submit"]',
+            'input[type="image"]',
+            'label[for]',
+            'select',
+            'textarea',
+            'button',
+            '.links',
+            {
+              target: '.custom-hover',
+              innerScale: 1,
+              outerScale: 2,
+              outerStyle: {
+                backgroundColor: '#00ff00f6',
+                mixBlendMode: 'exclusion',
+              }
+            },
+            {
+              target: '.custom-hover-lg',
+              innerScale: 1,
+              outerScale: 4,
+              outerStyle: {
+                backgroundColor: '#00ff00f6',
+                mixBlendMode: 'exclusion',
+              }
+            },
+            {
+              target: '.custom-hover-xl',
+              innerScale: 1,
+              outerScale: 7,
+              outerStyle: {
+                backgroundColor: '#00ff00f6',
+                mixBlendMode: 'exclusion',
+              }
             }
-          },
-          {
-            target: '.custom-hover-lg',
-            innerScale: 1,
-            outerScale: 4,
-            outerStyle: {
-              backgroundColor: '#00ff00f6',
-              mixBlendMode: 'exclusion',
-            }
-          },
-          {
-            target: '.custom-hover-xl',
-            innerScale: 1,
-            outerScale: 7,
-            outerStyle: {
-              backgroundColor: '#00ff00f6',
-              mixBlendMode: 'exclusion',
-            }
-          }
-        ] as any}
-        outerStyle={{
-          mixBlendMode: 'exclusion'
-        }}
-      />
+          ] as any}
+          outerStyle={{
+            mixBlendMode: 'exclusion'
+          }}
+        />
+      </div>
+      }
     </div>
     </ScreenContext.Provider>
 

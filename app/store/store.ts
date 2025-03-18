@@ -16,6 +16,25 @@ export const useEnv= create<EnvType>((set) => ({
 }))
 
 
+interface DeviceStore {
+  isMobile: boolean;
+}
+
+// 모바일 기기 여부를 판단하는 함수
+const checkIsMobile = () => {
+  if (typeof navigator === 'undefined') return false;
+  const userAgent = navigator.userAgent;
+  console.log(userAgent)
+  return /Android|iPhone|iPad|iPod|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(userAgent);
+};
+
+
+// Zustand 스토어 생성
+export const useDeviceStore = create<DeviceStore>(() => ({
+  isMobile: checkIsMobile(),
+}));
+
+
 export interface RootLenis {
   rootLenis: any
   setRootLenis: (val:any)=> void
