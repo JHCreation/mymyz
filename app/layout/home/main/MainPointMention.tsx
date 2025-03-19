@@ -81,7 +81,7 @@ export default function MainPointMention () {
 
       <div className="flex justify-center w-full max-w-[800px] mx-auto pt-40 md:pt-80 pb-40 md:pb-40 px-5 md:px-10" >
         
-        <div className="text-stroke-[1px] md:text-stroke-[1.4px] text-stroke-gray-500 text-stroke-fill-transparent">
+        <div className="w-full break-keep text-stroke-[1px] md:text-stroke-[1.4px] text-stroke-gray-500 text-stroke-fill-transparent">
           <animated.div 
             style={springs[0]}
           >

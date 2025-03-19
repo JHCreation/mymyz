@@ -2,7 +2,18 @@ import { Outlet, useLoaderData, useLocation } from "@remix-run/react";
 import { useState } from "react";
 import HomeWrapper from "~/layout/home/HomeWrapper";
 
-import { LoaderFunction } from "@remix-run/node";
+import { LoaderFunction, MetaFunction } from "@remix-run/node";
+
+const meta: MetaFunction = () => {
+  return [
+    { title: "마이즈" },
+    { name: "확실한 성공의 길을 제시합니다.", content: "마이즈와함께 하세요!" },
+    { name: "msapplication-TileColor", content: "#da532c" },
+    { name: "theme-color", content: "#ffffff" },
+  ];
+};
+
+export { meta }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userAgent = request.headers.get("User-Agent") || "";

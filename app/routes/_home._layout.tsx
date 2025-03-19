@@ -22,19 +22,10 @@ const links: LinksFunction = () => {
 };
 
 
-const meta: MetaFunction = () => {
-  return [
-    { title: "메메지션" },
-    { name: "확실한 성공의 길을 제시합니다.", content: "메메지션과 함께 하세요!" },
-    { name: "msapplication-TileColor", content: "#da532c" },
-    { name: "theme-color", content: "#ffffff" },
-  ];
-};
-
 const PAGE= 0;
 const SIZE= 9;
 const gridStyle= [...new Array(SIZE)]?.map(v=> {
-  return [_.random(4, 1)*10, _.random(12, 3)*20, _.random(6, 4)]
+  return [_.random(4, 1)*5, _.random(12, 3)*8, _.random(4, 3)]
 })
 export async function loader ({
   params,

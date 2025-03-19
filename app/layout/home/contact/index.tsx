@@ -38,7 +38,7 @@ export default function Index() {
 
   return (
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
-      <div className="bg-paper">
+      <div className="bg-paper relative z-10">
         <Contact />
       </div>
     </ScreenContext.Provider>

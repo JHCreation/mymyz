@@ -139,7 +139,7 @@ export default function MainServiceSlide () {
                       ...motion(i),
                     }}
                   >
-                    <div className={`w-full border ${color} pt-3 pl-3 md:pt-6 md:pl-6 flex flex-col`}>
+                    <div className={`w-full border min-h-[35dvh] ${color} pt-3 pl-3 md:pt-6 md:pl-6 flex flex-col`}>
                       <div className="">
                         {/* <div className={`font-type-1 font-extralight text-xl leading-none`}>{String(i+1).padStart(2, '0')}</div> */}
                         

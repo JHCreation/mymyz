@@ -49,8 +49,8 @@ const links: LinksFunction = () => {
 
 const meta: MetaFunction = () => {
   return [
-    { title: "메메지션" },
-    { name: "확실한 성공의 길을 제시합니다.", content: "메메지션과 함께 하세요!" },
+    // { title: "마이즈" },
+    // { name: "확실한 성공의 길을 제시합니다.", content: "마이즈와 함께 하세요!" },
     { name: "msapplication-TileColor", content: "#da532c" },
     { name: "theme-color", content: "#ffffff" },
     {
@@ -109,7 +109,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   useEffect(()=> {
     // console.log('mediaQuery::',xs, sm, md, lg, xl)
-    console.log('resize!')
     mediaQuery.setMediaQuery({ xs, sm, md, lg, xl })
   }, [xs, sm, md, lg, xl])
 

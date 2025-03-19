@@ -23,14 +23,14 @@ const links: LinksFunction = () => {
 };
 
 
-const meta: MetaFunction = () => {
-  return [
-    { title: "메메지션" },
-    { name: "확실한 성공의 길을 제시합니다.", content: "메메지션과 함께 하세요!" },
-    { name: "msapplication-TileColor", content: "#da532c" },
-    { name: "theme-color", content: "#ffffff" },
-  ];
-};
+// const meta: MetaFunction = () => {
+//   return [
+//     { title: "메메지션" },
+//     { name: "확실한 성공의 길을 제시합니다.", content: "메메지션과 함께 하세요!" },
+//     { name: "msapplication-TileColor", content: "#da532c" },
+//     { name: "theme-color", content: "#ffffff" },
+//   ];
+// };
 /* export { 
   getCategory as loader, 
   links, meta 
@@ -38,7 +38,8 @@ const meta: MetaFunction = () => {
 
 export { 
   getWorks as loader, 
-  links, meta 
+  links, 
+  // meta 
 }
 
 export const clientLoader = async ({ params, serverLoader }) => {
