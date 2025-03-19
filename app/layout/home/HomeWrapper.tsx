@@ -33,8 +33,8 @@ export const ScreenContext= createContext<ScreenContextProp>({
 
 const duration= 1800;
 const delay= 600;
-export default function HomeWrapper ({init, children}) {
-  const isMobile = useDeviceStore((state) => state.isMobile);
+export default function HomeWrapper ({init, isMobile, children}) {
+  // const isMobile = useDeviceStore((state) => state.isMobile);
   const { width, height }= useResize({})
   const [windowSize, setWindowSize] = useState<Size|null>(null);
   useEffect(()=> {
@@ -71,6 +71,8 @@ export default function HomeWrapper ({init, children}) {
     }, delay);
     
   };
+
+  console.log('isMobile',isMobile)
   return (
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
 
@@ -87,61 +89,59 @@ export default function HomeWrapper ({init, children}) {
       <Footer transition={transition} menuClick={handleClick} />
 
       {
-      // isMobile && 
-      <div className={`${isMobile ? 'hidden' : ''}`}>
-        <AnimatedCursor
-          trailingSpeed={5}
-          innerSize={10}
-          outerSize={25}
-          color='255,255,255'
-          outerAlpha={1}
-          innerScale={1}
-          outerScale={2}
-          clickables={[
-            'a',
-            'input[type="text"]',
-            'input[type="email"]',
-            'input[type="number"]',
-            'input[type="submit"]',
-            'input[type="image"]',
-            'label[for]',
-            'select',
-            'textarea',
-            'button',
-            '.links',
-            {
-              target: '.custom-hover',
-              innerScale: 1,
-              outerScale: 2,
-              outerStyle: {
-                backgroundColor: '#00ff00f6',
-                mixBlendMode: 'exclusion',
-              }
-            },
-            {
-              target: '.custom-hover-lg',
-              innerScale: 1,
-              outerScale: 4,
-              outerStyle: {
-                backgroundColor: '#00ff00f6',
-                mixBlendMode: 'exclusion',
-              }
-            },
-            {
-              target: '.custom-hover-xl',
-              innerScale: 1,
-              outerScale: 7,
-              outerStyle: {
-                backgroundColor: '#00ff00f6',
-                mixBlendMode: 'exclusion',
-              }
+      !isMobile && 
+      <AnimatedCursor
+        trailingSpeed={5}
+        innerSize={10}
+        outerSize={25}
+        color='255,255,255'
+        outerAlpha={1}
+        innerScale={1}
+        outerScale={2}
+        clickables={[
+          'a',
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          'label[for]',
+          'select',
+          'textarea',
+          'button',
+          '.links',
+          {
+            target: '.custom-hover',
+            innerScale: 1,
+            outerScale: 2,
+            outerStyle: {
+              backgroundColor: '#00ff00f6',
+              mixBlendMode: 'exclusion',
             }
-          ] as any}
-          outerStyle={{
-            mixBlendMode: 'exclusion'
-          }}
-        />
-      </div>
+          },
+          {
+            target: '.custom-hover-lg',
+            innerScale: 1,
+            outerScale: 4,
+            outerStyle: {
+              backgroundColor: '#00ff00f6',
+              mixBlendMode: 'exclusion',
+            }
+          },
+          {
+            target: '.custom-hover-xl',
+            innerScale: 1,
+            outerScale: 7,
+            outerStyle: {
+              backgroundColor: '#00ff00f6',
+              mixBlendMode: 'exclusion',
+            }
+          }
+        ] as any}
+        outerStyle={{
+          mixBlendMode: 'exclusion'
+        }}
+      />
       }
     </div>
     </ScreenContext.Provider>
