@@ -148,9 +148,10 @@ export const riging_text_to= (delaySec, startDelaySec)=> (i, ctrl)=>{
 
 export const riging_text_config= (key) => {
   if ( key == 'y' )return {
-    mass: 1,
-    friction: 8,
-    tension: 40,
+    // mass: 1,
+    // friction: 8,
+    // tension: 40,
+
     // velocity: 1,
     // duration: 1000
   }
@@ -161,6 +162,7 @@ export const riging_text_config= (key) => {
     mass: 1,
     friction: 30,
     tension: 100,
+
     // duration: 500,
   }
   return {}
