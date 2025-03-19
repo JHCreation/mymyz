@@ -93,7 +93,7 @@ export default function MainLogo () {
   return (
     <div className="bg-paper z-10 relative">
       <section ref={containerRef} className='h-[300lvh]'>
-        <div className="sticky h-dvh top-0 flex items-center overflow-hidden pt-nav-m md:pt-nav">
+        <div className="sticky h-svh top-0 flex items-center overflow-hidden pt-nav-m md:pt-nav">
           <div className="h-full max-h-svh w-full flex flex-col justify-between  ">
             <div className=" font-type-en text-stroke-[1px] font-black text-stroke-gray-500 text-stroke-fill-transparent leading-[.85] text-[40px] md:text-[60px] uppercase italic">
               <h1 className="">Web/Graphic</h1>
