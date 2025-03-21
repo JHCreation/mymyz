@@ -1,11 +1,11 @@
 .ql-snow .ql-stroke {
-  stroke: oklch(var(--bc));
+  stroke: var(--color-base-content);
 }
 .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
-  fill: oklch(var(--bc));
+  fill: var(--color-base-content);
 }
 .ql-snow .ql-picker-label::before {
-  color: oklch(var(--bc));
+  color: var(--color-base-content);
 }
 
 #editor-resizer .btn { 

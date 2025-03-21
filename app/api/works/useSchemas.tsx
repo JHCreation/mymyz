@@ -144,6 +144,66 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
       },
     },
 
+    [`thumb`]: {
+      key: `thumb`,
+      name: '썸네일',
+      type: 'file',
+      // defaultValue: notice_thumbs_parse,
+      value: [],
+      validate: [
+        {
+          name: 'check',
+          check: ({ value, schema, wholeSchema })=> {
+            let status:ValidateCheckStatus= true;
+            status= value.length == 0 ? 'empty' : true;
+            let totalSize= 0;
+            const mimetypes = /image\/png|image\/jpeg|image\/gif|image\/svg\+xml|image\/webp/;
+            if( value.length > 10 ) return { value: value, status: 'limitLen' };
+            value.some( v=> {
+              if( !v?.file ) return true
+              const { type, size }= v?.file;
+              const result = mimetypes.test(type);
+              console.log(type, result)
+              if( !result ) {
+                status= 'ext';
+                return true;
+              }
+              if( size > 10485760 ) status= 'limitItem';
+              totalSize += size;
+            });
+
+            if( status != true ) return { value: value, status };
+            if( totalSize > 104857600 ) return { value: value, status: 'limitTotal' };
+            return { value: value, status };
+          },
+          msg: {
+            ext: '잘못된 파일 형식(png, jpg, gif, svg 가능)',
+            limitItem: '파일하나당 10Mb를 초과할수 없습니다.',
+            limitTotal: '총파일이 100Mb를 초과할수 없습니다.',
+            limitLen: '총파일수가 10개를 초과할수 없습니다.',
+            empty: '',
+            true: '',
+            false: '2개이상 체크',
+            null: '필수등록',
+          },
+          value: 'empty',
+        }
+      ],
+      multiple: true,
+      // range: statusSchema,
+      required: true,
+      helperText: true,
+      thumbWidth: 94.8,
+      disableFilter: true,
+      uploadPath: `/${keyname}`,
+      // component: <FileList />,
+      component: <FileInput />,
+      /* update: {
+        component: <FileList />
+      } */
+      // order: 1
+    },
+
     [`create_date`]: {
       key: `create_date`,
       name: '생성일자',

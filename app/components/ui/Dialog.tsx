@@ -110,7 +110,7 @@ export default function Dialog({ root, open, setOpen, children, outsidePress=tru
       
       <FloatingPortal root={root}>
         {isMounted && (
-          <FloatingOverlay className={`flex ${!full && 'py-5'} justify-center bg-black bg-opacity-40 z-[999] ${open?ani.overlay.on:ani.overlay.off} ${overLayClassName}`} lockScroll={lockScroll}>
+          <FloatingOverlay className={`flex ${!full && 'py-5'} justify-center bg-black/40 z-[999] ${open?ani.overlay.on:ani.overlay.off} ${overLayClassName}`} lockScroll={lockScroll}>
             <FloatingFocusManager context={context}>
               <>
               <div

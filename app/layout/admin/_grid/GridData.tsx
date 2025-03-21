@@ -4,7 +4,7 @@ import { Dispatch, ReactNode, SetStateAction, Suspense, createContext, useCallba
 // import queryOptions from '~/api/category/queryOption';
 
 import { useState, useEffect, useMemo } from 'react';
-import { AgGridReact, CustomCellRendererProps } from 'ag-grid-react'; // React Grid Logic
+import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
 import { ColDef, ModuleRegistry, ValueFormatterParams, RowSelectionOptions, SelectionColumnDef } from 'ag-grid-community';
 import { AG_GRID_LOCALE_KR } from '../_grid/agGridLocal';
 import Pagination from '~/components/grid/Pagination';
@@ -28,21 +28,26 @@ import { FloatingOverlay } from "@floating-ui/react";
 import Dialog from "~/components/ui/Dialog";
 import { DataListContext } from "./GridDataType";
 
-
-
+import { TextFilterModule } from 'ag-grid-community'; 
+import { NumberFilterModule } from 'ag-grid-community'; 
+import { DateFilterModule } from 'ag-grid-community'; 
+import { CustomFilterModule } from 'ag-grid-community';
+import { HighlightChangesModule } from 'ag-grid-community'; 
     
-// import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-// ModuleRegistry.registerModules([ ClientSideRowModelModule ]);
+import { AllCommunityModule, ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, themeBalham, } from 'ag-grid-community';
+ModuleRegistry.registerModules([ AllCommunityModule ]);
+
+// ModuleRegistry.registerModules([ ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, TextFilterModule,NumberFilterModule, DateFilterModule, CustomFilterModule, HighlightChangesModule  ]);
 
 // Custom Cell Renderer (Display logos based on cell value)
-const CompanyLogoRenderer = (params: CustomCellRendererProps) => (
+/* const CompanyLogoRenderer = (params: CustomCellRendererProps) => (
   <span style={{ display: "flex", height: "100%", width: "100%", alignItems: "center" }}>{params.value && <img alt={`${params.value} Flag`} src={`https://www.ag-grid.com/example-assets/space-company-logos/${params.value.toLowerCase()}.png`} style={{display: "block", width: "25px", height: "auto", maxHeight: "50%", marginRight: "12px", filter: "brightness(1.1)"}} />}<p style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>{params.value}</p></span>
-);
+); */
 
 /* Custom Cell Renderer (Display tick / cross in 'Successful' column) */
-const MissionResultRenderer = (params: CustomCellRendererProps) => (
+/* const MissionResultRenderer = (params: CustomCellRendererProps) => (
   <span style={{ display: "flex", justifyContent: "center", height: "100%", alignItems: "center"}}>{<img alt={`${params.value}`} src={`https://www.ag-grid.com/example-assets/icons/${params.value ? 'tick-in-circle' : 'cross-in-circle'}.png`} style={{width: "auto", height: "auto"}} />}</span>
-);
+); */
 
 /* Format Date Cells */
 const dateFormatter = (params: ValueFormatterParams): string => {
@@ -276,6 +281,10 @@ export default function GridData<T> ({ useSchemas, queryOptions, filterComponent
   const [test, setTest]= useState(false)
 
   console.log(lists)
+  const myTheme = themeBalham.withParams({
+    spacing: 2,
+    accentColor: 'red',
+});
   return (
     category && 
     <DataListContext.Provider value={{ 
@@ -367,6 +376,7 @@ export default function GridData<T> ({ useSchemas, queryOptions, filterComponent
                   {
                     lists &&
                     <AgGridReact 
+                      theme={myTheme}
                       loading={mutation.isPending}
                       localeText={localeText}
                       loadingOverlayComponent={()=> <div>Loading.......</div>}

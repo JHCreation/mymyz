@@ -45,10 +45,12 @@ export default function Index () {
   // const { data } = useLoaderData<typeof loader>();
   // console.log(data)
   return (
-    <div style={{
-      cursor: `auto`
-      // cursor: `auto`
-    }}>
+    <div 
+      style={{
+        cursor: `auto`
+        // cursor: `auto`
+      }}
+    >
     {/* <Suspense fallback={<div className="mt-20 w-full h-dvh bg-red-400">Loading data...</div>}>
       <Await resolve={data}> */}
         {/* {(resolvedData) => resolvedData && <Admin data={data}/>} */}

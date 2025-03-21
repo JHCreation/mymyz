@@ -15,12 +15,7 @@ import { ToastContainer, toast, cssTransition, Id, ToastOptions } from 'react-to
 import { toasterConfirm, toaster } from "@/components/ui/Toast";
 // import { useRouter } from "next/navigation";
 import { isEmptyArray } from "@/utils/validate/utility";
-import { useNavigate } from "@remix-run/react";
-// import { Modal } from '@mui/base/Modal';
-import clsx from 'clsx';
-import { useLogState } from "~/store/store";
-import { IconX } from "@tabler/icons-react";
-import { CommCreate } from "~/@types/queryType";
+
 import { DataListContext } from "./GridDataType";
 import Dialog from "~/components/ui/Dialog";
 import { CloseIcon } from "./comps";
@@ -298,7 +293,7 @@ export default function Update (props) {
     <Dialog open={open} setOpen={setOpen} outsidePress={true} escapeKey={false}>
     {/* <dialog id="modal_update" className={`modal`} open={open}> */}
       {/* <div className={`modal-box w-dvw max-w-[512px] max-h-dvh`} ref={wrapper}> */}
-      <div className={`modal-box scale-100 max-h-full my-auto bg-base-100 p-5 pb-0`} ref={wrapper}>
+      <div className={`modal-box- overflow-y-auto overscroll-contain duration-300 scale-100 max-h-full my-auto bg-base-100 p-5 pb-0`} ref={wrapper}>
 
         <div className="">
           <CloseIcon handleClose={handleClose} />

@@ -94,6 +94,7 @@ const scrolls= new SectionScroll({
 
 
 
+const staticUrl= typeof window !== 'undefined' ? window?.ENV?.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
 
 export function MainWork () {
   const { params, option: { gridStyle} } = useLoaderData<any>()
@@ -244,7 +245,13 @@ export function MainWork () {
           {
             // style.current && 
             data?.list.map((val, i)=> {
-              let imgUrl= ''
+              let imgPath
+              try {
+                imgPath= JSON.parse(val.thumb)
+              } catch (error) {
+                
+              }
+              let imgUrl= imgPath ? `${staticUrl}${imgPath}` : banner_1
               try {
                 // imgUrl= `${domain}/${JSON.parse(val.doc_01)[0]}`
                 // console.log(imgUrl)
@@ -258,10 +265,13 @@ export function MainWork () {
                   style={{paddingLeft: `${gridStyle[i][0]}px`}}
                   // style={{paddingLeft: `${_.random(4, 1)*10}px`}}
                 >
+
+                  
                   <animated.div
                     style={motion((i%3)+1)}
                     className={`overflow-hidden`}
                   >
+                    
                     <Link
                       to={`/modal/${val.id}`}
                       /* onClick={e=> {
@@ -285,22 +295,30 @@ export function MainWork () {
                           return `-${((progress*200)-100)}px`
                         }) */
                       }}
-                      className={`block overflow-hidden`}
+                      className={`block overflow-hidden pt-100`}
                     >
+                      
                       <animated.img 
                         style={{
                           y: trails[(i%3)+1].y.to(progress=> {
                             return `${-((progress*200)+100)}px`
                           })
                         }}
-                        src={imgUrl || banner_1} 
-                        alt="" className="h-[180%] object-cover" 
+                        src={imgUrl} 
+                        alt="" className="h-[180%] w-full object-cover" 
                         /* style={{
                           marginTop: `${_.random(12, 8)*10}px`,
                           aspectRatio: `${_.random(16, 2)} / 9`
                         }} */
                       />
                     </Link>
+                    {/* {
+                      val?.title && 
+                      <div className="">
+                        <RisingText text={val.title} className="font-type-2 text-4xl"/>
+                      </div>
+                    } */}
+                    
                     <TextBox data={val} />
                   </animated.div>
                   
@@ -378,11 +396,11 @@ const TextBox= ({ data })=> {
         
       </div>
       {/* <div className="font-type-2 text-4xl"> */}
-        <RisingText text={data.name} className="font-type-2 text-4xl"/>
+        
       {/* </div> */}
 
-      <div className="font-type-2 text-sm font-thin mt-3">
-        <RisingText text={data.key} className="" textClassName="break-keep"/>
+      <div className="font-type-2 text-title-sm mt-3 leading-20">
+        <RisingText text={data.title} className="" textClassName="break-all"/>
         {/* <RisingText text={'design'} className=""/> */}
       </div>
 

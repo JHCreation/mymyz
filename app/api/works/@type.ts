@@ -5,6 +5,7 @@ export interface Works {
   key: string
   title: string
   content: string
+  thumb: string
   create_date: string
 }
 export type WorksList= CommList<Works>

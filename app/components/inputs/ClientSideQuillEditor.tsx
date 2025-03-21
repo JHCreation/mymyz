@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useQuill } from 'react-quilljs-vite-fix';
+import React, { useEffect, useMemo, useState } from 'react';
+// import { useQuill } from 'react-quilljs-vite-fix';
+import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css'; // 이 import는 클라이언트 사이드에서만 실행됩니다.
 import 'quill/dist/quill.bubble.css'; // 이 import는 클라이언트 사이드에서만 실행됩니다.
 import './quill-style.css'; 
@@ -93,10 +94,24 @@ export default function ClientSideQuillEditor({ id, tableName, keyName, option, 
   };
 
   const { quill, quillRef, Quill } = useQuill({ theme, modules, formats, placeholder });
-  
+  /* useMemo(() => {
+    if (Quill && !quill) {
+      import("quill-magic-url").then((MagicUrl) => {
+        console.log(MagicUrl)
+        Quill.register("modules/magicUrl", MagicUrl.default);
+      });
+    }
+  }, [Quill, quill]); */
+
   if (Quill && !quill) { // For execute this line only once.
+    // const MagicUrl = require('quill-magic-url').default; 
+    
     Quill.register('modules/magicUrl', MagicUrl);
     Quill.register('modules/resize', QuillResizeImage);
+    /* import("quill-magic-url").then((MagicUrl) => {
+      console.log(MagicUrl)
+      Quill.register("modules/magicUrl", MagicUrl.default);
+    }); */
 
     var Size:any = Quill.import('attributors/style/size');
     Size.whitelist = fontSizeArr;

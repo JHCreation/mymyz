@@ -226,8 +226,9 @@ export default function Create (props) {
     <Dialog open={open} setOpen={setOpen} outsidePress={true} escapeKey={false} contentClassName="p-0">
 
     {/* <dialog id="modal_create" className={`modal`} open={open} > */}
+    {/* <div className="modal" role="dialog"> */}
       {/* <div className={`modal-box`} ref={wrapper}> */}
-      <div className={`modal-box min-w-[400px] w-full max-w-[900px] scale-100 max-h-full my-auto bg-base-100 p-5 pb-0 `} ref={wrapper}>
+      <div className={`modal-box- overflow-y-auto overscroll-contain duration-300 min-w-[400px] w-full max-w-[900px] scale-100 max-h-full my-auto bg-base-100 p-5 pb-0 `} ref={wrapper}>
 
           <CloseIcon handleClose={handleClose} />
           {
@@ -274,6 +275,7 @@ export default function Create (props) {
           // transition={bounce}
         />
       </div>
+    {/* </div> */}
     {/* </dialog> */}
     </Dialog>
   )
