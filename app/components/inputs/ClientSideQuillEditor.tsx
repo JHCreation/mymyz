@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-// import { useQuill } from 'react-quilljs-vite-fix';
-import { useQuill } from 'react-quilljs';
+import { useQuill } from 'react-quilljs-vite-fix';
+// import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css'; // 이 import는 클라이언트 사이드에서만 실행됩니다.
 import 'quill/dist/quill.bubble.css'; // 이 import는 클라이언트 사이드에서만 실행됩니다.
 import './quill-style.css'; 
