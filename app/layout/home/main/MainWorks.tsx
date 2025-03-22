@@ -400,8 +400,8 @@ const TextBox= ({ data })=> {
         
       {/* </div> */}
 
-      <div className="font-type-2 text-title-sm mt-3 leading-20">
-        <RisingText text={data.title} className="" textClassName="break-all"/>
+      <div className="font-type-2 text-6xl mt-3 break-keep">
+        <RisingText text={data.title} className="break-keep" textClassName="break-keep"/>
         {/* <RisingText text={'design'} className=""/> */}
       </div>
 

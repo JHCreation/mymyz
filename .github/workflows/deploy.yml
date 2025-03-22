@@ -70,7 +70,7 @@ jobs:
       - name: Deploy via Rsync
         uses: burnett01/rsync-deployments@master
         with:
-          switches: -avz --delete --exclude='.git' --exclude='.github' --exclude='.gitignore' --exclude='vite.config.ts' --exclude='tsconfig.json' --exclude='README.md' --exclude='postcss.config.js' --exclude='.eslintrc.cjs' --exclude='node_modules' --exclude='.env'
+          switches: -avz --delete --exclude='.git' --exclude='.github' --exclude='.gitignore' --exclude='vite.config.ts' --exclude='tsconfig.json' --exclude='README.md' --exclude='postcss.config.js' --exclude='.eslintrc.cjs' --exclude='node_modules' --exclude='.env.*'
           path: ./
           remote_path: ~/www/mymyz
           remote_host: ${{ secrets.SERVER_HOST }}
