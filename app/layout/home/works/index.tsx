@@ -20,6 +20,7 @@ export default function Index () {
 
 
 const Works= ({params})=> {
+  const staticUrl= typeof window !== 'undefined' ? window?.ENV?.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
   const [searchParams, setSearchParams] = useSearchParams();
   // const { page, size }= homeGetParams({ searchParams: searchParams })
   // const [page, setPage]= useState(0)
@@ -36,20 +37,28 @@ const Works= ({params})=> {
       {
         data && 
         <>
-        <div className="max-w-container mx-auto p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-4">
+        <div className="max-w-container mx-auto p-6 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 gap-4">
           {
             data?.list.map(d=> {
+              let imgPath
+              try {
+                imgPath= JSON.parse(d.thumb)
+              } catch (error) {
+                
+              }
+              let imgUrl= imgPath ? `${staticUrl}${imgPath}` : ''
               return (
                 <Link 
                   to={`./${d.id}`} key={d.id} 
                   preventScrollReset={true}
                   className="border p-2 min-h-[300px] mt-10"
                 >
-                  <p className="text-xs text-accent-content ">
+                  {/* <p className="text-xs text-accent-content ">
                     {d.key}
-                  </p>
-                  <div className="leading-none text-5xl font-bold">{d.id}</div>
-                  <div className="leading-none">{d.title}</div>
+                  </p> */}
+                  <img src={imgUrl} alt=""  className="aspect-square object-cover"/>
+                  {/* <div className="leading-none text-5xl font-bold">{d.id}</div> */}
+                  <div className="leading-none mt-4 text-4xl md:text-6xl">{d.title}</div>
                     
                 </Link>
               )

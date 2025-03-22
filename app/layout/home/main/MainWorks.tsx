@@ -241,7 +241,7 @@ export function MainWork () {
       }
       {
         !isPending && 
-        <ul className="grid grid-cols-2 md:grid-cols-3 ">
+        <ul className="grid grid-cols-1 md:grid-cols-3 ">
           
           {
             // style.current && 
@@ -253,13 +253,7 @@ export function MainWork () {
                 
               }
               let imgUrl= imgPath ? `${staticUrl}${imgPath}` : banner_1
-              try {
-                // imgUrl= `${domain}/${JSON.parse(val.doc_01)[0]}`
-                // console.log(imgUrl)
-              } catch (error) {
-                // console.log(data.doc_01, error)
-
-              }
+              
               return (
                 <li key={i} className="md:w-full py-2 md:py-5 pr-1 md:pr-3"
                 
@@ -296,7 +290,7 @@ export function MainWork () {
                           return `-${((progress*200)-100)}px`
                         }) */
                       }}
-                      className={`block overflow-hidden pt-100`}
+                      className={`block overflow-hidden`}
                     >
                       
                       <animated.img 
@@ -400,7 +394,7 @@ const TextBox= ({ data })=> {
         
       {/* </div> */}
 
-      <div className="font-type-2 text-6xl mt-3 break-keep">
+      <div className="font-suite text-2xl md:text-6xl mt-3 break-keep">
         <RisingText text={data.title} className="break-keep" textClassName="break-keep"/>
         {/* <RisingText text={'design'} className=""/> */}
       </div>

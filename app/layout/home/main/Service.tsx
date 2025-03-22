@@ -90,10 +90,10 @@ export const service= [
 ]
 
 
-import banner_1 from "/images/13102.jpg";
-import banner_2 from "/images/48.jpg";
-import banner_3 from "/images/1042.jpg";
-import banner_4 from "/images/11769.jpg";
+import banner_1 from "/images/party-1.webp";
+import banner_2 from "/images/travel-1.webp";
+import banner_3 from "/images/travel-2.webp";
+import banner_4 from "/images/christmas_ch.webp";
 
 
 export const howto= [
