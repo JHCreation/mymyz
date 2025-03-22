@@ -94,9 +94,9 @@ const scrolls= new SectionScroll({
 
 
 
-const staticUrl= typeof window !== 'undefined' ? window?.ENV?.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
 
 export function MainWork () {
+  const staticUrl= typeof window !== 'undefined' ? window?.ENV?.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
   const { params, option: { gridStyle} } = useLoaderData<any>()
   const { page, size }= params;
   // console.log(params)
@@ -110,6 +110,7 @@ export function MainWork () {
     staleTime: 30*1000,
     gcTime: 10000,
   })
+
   const { data, isPending, isLoading }= query
   // console.log(data, 'server?? client??')
 
