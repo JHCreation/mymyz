@@ -15,8 +15,8 @@ import { SchemItemProps } from "~/@types/dataSchemas";
 import { useTextInput } from "~/components/inputs/TextInput";
 import { helpText } from "~/components/inputs/_validate";
 
-const toastContainerId= 'publicContactCreateToast';
-const toastCreateId= 'publicContactCreate';
+export const toastContainerId= 'publicContactCreateToast';
+export const toastCreateId= 'publicContactCreate';
 // const toastFileCreateId= 'publicContactFileCreate';
 const toastOpt:ToastOptions= {
   containerId: toastContainerId,
@@ -50,12 +50,6 @@ export default function ContactInputs () {
   
   const [status, setStatus]= useState<'edit'|'pending'|'confirm'>('edit')
   const submit= (e)=> {
-    /* toaster.success({text: '접수가 등록 되었습니다!'}, { 
-      ...toastOpt, toastId: toastCreateId,
-      autoClose: false
-      // hideProgressBar: true
-    })
-    return; */
     
     const { check, data, file }= handleValidate();
     console.log(check, data)
@@ -78,6 +72,7 @@ export default function ContactInputs () {
     setStatus('pending')
     // console.log('file',file,!_.isEmpty(file), !file)
     // if( !_.isEmpty(file) && file ) fileCreate({log, file})
+    // toaster.success({})
     toaster.loading({text: "처리중입니다..."}, { ...toastOpt, toastId: toastCreateId })
     mutationCreate.mutate({ data, access_token: log?.access_token })
   }
@@ -157,7 +152,7 @@ export default function ContactInputs () {
     <div className="bg-paper relative z-20">
       {
       schema &&
-      <div className="w-full p-6">
+      <div className="w-full p-6 ">
         
         <ContactText text={'안녕하세요,'} />
         <div className="md:flex items-end py-3 md:py-4">
@@ -177,7 +172,7 @@ export default function ContactInputs () {
           
           {/* <ContactInput placeholder={"연락처를 입력해 주세요."}/> */}
         </div>
-        <div className="md:flex items-end py-3 md:py-4">
+        <div className="md:flex items-end py-3 md:py-4 ">
           <ContactText text={'상담내용은'} />
           <TextInputs schemaKey={'content'} schema={schema} setSchema={setSchema} keyname={queryOptions.name} toastOption={toastOpt} placeholder={"내용을 입력해 주세요."}/>
           
@@ -195,20 +190,7 @@ export default function ContactInputs () {
       </div>
       }
 
-      <div className="fixed bottom-0">
-        <ToastContainer
-          containerId={toastContainerId}
-          theme="dark"
-          // stacked
-          position="bottom-center"
-          // limit={1}
-          // className={"!w-full max-w-[500px] "}
-          // toastClassName={"!p-5"}
-          // bodyClassName={"!p-2 justify-center"}
-          
-          // transition={bounce}
-        />
-      </div>
+      
     </div>
   )
 }
@@ -272,7 +254,7 @@ function TextInputs ({schemaKey, schema, setSchema, keyname, toastOption, placeh
         // type="text" 
         // rows={5}
         placeholder={placeholder} 
-        className={`${err ? 'placeholder:text-red-400 border-red-400' : 'border-black'} w-full textarea textarea-sm md:textarea-lg px-1 md:px-2 py-2 md:py-3 text-md border-0 focus:outline-none rounded-none border-b  text-center leading-3`} 
+        className={`${err ? 'placeholder:text-red-400 border-red-400' : 'border-black'} w-full textarea textarea-lg px-1 md:px-2 py-2 md:py-3 border-0 focus:outline-none rounded-none border-b  text-center leading-3`} 
         disabled={disabled}
         // error={err}
         required={required || false}

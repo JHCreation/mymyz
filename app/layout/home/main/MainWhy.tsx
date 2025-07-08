@@ -1,13 +1,9 @@
-import { SplitText } from "@cyriacbr/react-split-text";
 import { animated, useInView, useResize, useScroll, useSpring, useSprings, useTrail } from "@react-spring/web";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import { ScreenContext } from "../Layout1";
 import SectionScroll from "./SectionScroll";
 import { RisingText } from "./RisingText";
-import { characterTitle, characterDesc, why, whyMemyze } from "./Service";
 import _ from 'lodash'
-import character_1 from "/images/na.svg";
-import character_7 from "/images/jh.svg";
 
 
 const scrolls= new SectionScroll({
@@ -67,10 +63,6 @@ function Parallax ({ scrolls }) {
       }) 
     }
   }, [containerRef.current, windowSize])
-
-  
-
-
   
   
 
@@ -91,172 +83,105 @@ function Parallax ({ scrolls }) {
   }), [])
   
   let len=0
+
+  const why= [
+    { 
+      title: "방향 탐색 및 본질 파악" , 
+      subject: "(Tree-Shaking)",
+      detail: "저희는 가장 먼저 당신의 비즈니스가 가진 고유의 철학과 핵심 가치를 파악합니다. 사업의 '본질'을 이해하는 것에서 모든 전략이 시작됩니다.불필요한 가지는 쳐내고 가장 중요한 열매, 즉 사업의 핵심 가치와 가장 시급한 목표를 찾아냅니다. 이를 통해 모든 활동이 하나의 목표를 향해 정렬되도록 합니다."
+    },
+    { 
+      title: "단계적 성장 로드맵" , 
+      subject: "(Tech-Tree)" , 
+      detail: "사업의 핵심 철학에서 시작하여 성장 단계에 따라 꼭 필요한 솔루션만을 순서대로 제안합니다. 비즈니스의 성장에 맞춰 유연하게 확장되는 '테크트리' 전략을 경험하실 수 있습니다."
+    },
+    { 
+      title: "최적의 예산 설계" , 
+      detail: "사업 규모와 특징, 목표를 고려하여 가장 합리적인 예산과 비용을 산정합니다. 주어진 예산과 자원 내에서 최고의 퍼포먼스를 낼 수 있도록 구성, 범위, 품질의 완벽한 균형점을 찾아냅니다. 불필요한 거품을 모두 걷어내고 정직한 진단과 최적화된 설계를 통해 예산 안에서 최고의 효율을 만들어냅니다."
+    },
+    { 
+      title: "현황 분석 및 좌표 설정" , 
+      detail: "현재 비즈니스의 성과 지표(매출, 고객 데이터, 트래픽 등)를 기반으로 시장 내에서 우리의 정확한 위치를 파악합니다. 어디에 있는지 알아야 어디로 갈지 정할 수 있습니다. "
+    },
+    { 
+      title: "보장된 전문성" , 
+      detail: "'만능'이라고 말하지 않습니다. 각 분야에서 최고의 역량을 검증받은 전문가들이 자신의 영역을 책임져 결과물의 품질을 보장합니다. 단 1원의 예산도 낭비되지 않도록 기능적 필요성과 예술적 필요성을 구분하여 최적의 전문가를 배정합니다. "
+    },
+    { 
+      title: "통합적 시너지" , 
+      detail: "마케팅, 브랜딩, 디자인, 콘텐츠 제작까지. 각 분야의 전문가들이 하나의 팀처럼 유기적으로 움직여 흩어지고 분산되는 노력들로 비용이 낭비되지 않게, 응집된 시너지를 창출합니다. "
+    },
+  ]
+  
   return (
     <div
       ref={containerRef}
       className="bg-gray- h- flex w-full max-w-screen-1 m-auto my-10 md:my-40"
-      
     >
       <div className="w-full max-w-container-md mx-auto px-4 md:px-0">
-        {/* {
-          why && why.map((service, key)=> {
-            return ( */}
-              <div className="md:flex flex-col md:flex-row relative w-full h- ">
-                <section className='absolute h-[600dvh] md:h-auto md:relative w-full md:w-1/2 mr-20'>
-                  <div className="sticky top-nav bg-paper z-10 ">
-                    <div className="flex pt-1.5">
-                      <div className="font-black text-5xl md:text-[2em] font-type-1 mr-2" >
-                        <RisingText text={'04'} className="font-thin text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"/>
-                      </div>
-                      <div className="text-left max-w-[700px] uppercase font-type-en text-6xl md:text-title-lg font-extrabold leading-[.8]">
-                        <RisingText 
-                          text={'why'}
-                          className=""
-                        />
-                      </div>
-                    </div>
-
-                    <div className="border-t mt-2 md:mt-8 pt-1 md:pt-4 max-w-[260px] ml-auto">
-                      <RisingText 
-                        text={'왜 꼭 우리여야 할까?'}
-                        className="md:text-sm"
-                      />
-                    </div>
-                  </div>
-      
-                </section>
-                <div className="w-full md:w-1/2 top-[14em] pb-[14em] left-0 relative md:top-auto break-keep">
-                  
-                {/* {
-                  whyMemyze.map(why=> {
-                    return ( */}
-
-                    <div className="mb-20">
-                        <animated.div
-                          style={motion(0)}
-                        >
-                          <RisingText 
-                            text={'경기가 좋지 않습니다.'}
-                            className="text-2xl md:text-4xl"
-                          />
-                        </animated.div>
-                        <animated.div
-                          style={motion(1)}
-                        >
-                          <RisingText 
-                            text={'지속되는 저성장과 고물가에 비용상승은 부담스럽기만 합니다. 정해진 예산에 비용을 줄여야 하지만 안쓸수도 없습니다. 합리적인 비용이 필요합니다.'}
-                            className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                          />
-                        </animated.div>
-                          
-                      </div>
-                        
-                      <div className="mb-20">
-                        <animated.div
-                            style={motion(0)}
-                          >
-                            <RisingText 
-                              text={'브랜딩은 필요합니다.'}
-                              className="text-2xl md:text-4xl"
-                            />
-                          </animated.div>
-                          <animated.div
-                            style={motion(2)}
-                          >
-                            <RisingText 
-                              text={'비즈니스를 시작하는 동기는 여러가지가 있습니다. 체계적인 플랜으로 시작하기도 하지만 우연하게 시작되기도 합니다. 비즈니스가 시작되면 세일즈를 위해 여러 장르의 파트너들을 필요로 하게 됩니다. 다양한 협업 중에서 선행되어야 하면서 핵심적인 분야가 비즈니스의 시각화 디자인과 제품/서비스의 내용을 전달하는 단계일 것입니다. 우리는 이를 “브랜딩”이라 합니다.'}
-                              className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                            />
-                          </animated.div>
-                            
-                      </div>
-
-
-                      <div className="mb-20">
-                        <animated.div
-                            style={motion(0)}
-                          >
-                            <RisingText 
-                              text={'어떻게 시작해야 할까요'}
-                              className="text-2xl md:text-4xl"
-                            />
-                          </animated.div>
-                          <animated.div
-                            style={motion(2)}
-                          >
-                            <RisingText 
-                              text={'가장 먼저 로고를 떠올릴 것이고, 로고 제작을 시작으로 로고에 맞춰 판촉물을 제작하고, 웹사이트를 제작, 그 다음, 그 다음… 이렇게 여러 단계를 거쳐 각각의 파트너들에게 전달됩니다. 이런 현실은 하나의 파트너에게 의뢰한다고 해서 달라지지 않습니다. 또 다시 외부 인력 혹은 업체를 통해서 같은 단계를 거칠테니까요. '}
-                              className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                            />
-                          </animated.div>
-                            
-                      </div>
-
-
-                      <div className="mb-20">
-                        <animated.div
-                            style={motion(0)}
-                          >
-                            <RisingText 
-                              text={'과정은 뒤에 숨어 있습니다.'}
-                              className="text-2xl md:text-4xl"
-                            />
-                          </animated.div>
-                          <animated.div
-                            style={motion(2)}
-                          >
-                            <RisingText 
-                              text={'이러한 단계를 거치면서 브랜드의 가치관은 흐려지고 변색되어 통일성과 방향성은 사라질 것입니다. 단계별로 비용이 상승하는 문제 역시 예상하지 못한 문제죠. 운이 좋게 외부 인력이 쉽게 충원되어도 비용은 추가되는데, 인력 보충에 문제라도 생기면 그 비용은 고스란히 결과물에 반영이 되겠죠. '}
-                              className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                            />
-                          </animated.div>
-
-                          <animated.div
-                            style={motion(4)}
-                          >
-                            <RisingText 
-                              text={'시각화 디자인을 통해 가치관을 전달하는 과정은 정형화되고 잘 짜여진 과정속에서 정확한 시점에 나오지 않습니다. 이는 일정을 무시한 채 무기한 창작을 위한 고뇌의 시간을 보낸다는 뜻이 아닙니다. 훌륭한 팀워크 안에서 이미지를 제작하고, 웹사이트를 디자인하고 전개하는 과정에서 ‘우연히’ 떠오르며 업무의 연결과정에서 자연스럽게 방향을 찾기도 하죠. 이런 ‘우연의 과정’을 여러번 반복하며 다양한 협업과 수정을 통해 ‘브랜드의 가치관’이라는 공통된 하나의 방향을 위해 프로젝트를 실행 합니다.'}
-                              className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                            />
-                          </animated.div>
-                            
-                      </div>
-                        
-
-
-                      <div className="mb-20">
-                        <animated.div
-                            style={motion(0)}
-                          >
-                            <RisingText 
-                              text={'합리적인 비용이 필요합니다.'}
-                              className="text-2xl md:text-4xl"
-                            />
-                          </animated.div>
-                          <animated.div
-                            style={motion(2)}
-                          >
-                            <RisingText 
-                              text={'우리는 아직 스타트업 단계입니다. 각 분야의 오랜 경험과 그 동안 크고 작은 프로젝트를 함께 진행하면서 보다 나은 팀워크를 위해 노력해 왔습니다. 이제 그 실력을 시장에 검증 받으려 합니다. 그래서 아직은 비용이 높지 않습니다. 규모와 예산에 맞춰서 프로젝트를 진행해 드리겠습니다. 결코 이 기회를 놓치지 마세요. '}
-                              className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
-                            />
-                          </animated.div>
-                            
-                      </div>
-                        
-
-
-                        
-                    {/* )
-                  })
-                } */}
-                    
+  
+        <div className="md:flex flex-col md:flex-row relative w-full h- ">
+          <section className='absolute h-[600dvh] md:h-auto md:relative w-full md:w-1/2 mr-20'>
+            <div className="sticky top-nav bg-paper z-10 ">
+              <div className="flex pt-1.5">
+                <div className="font-black text-5xl md:text-[2em] font-type-1 mr-2" >
+                  <RisingText text={'04'} className="font-thin text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"/>
                 </div>
-      
+                <div className="text-left max-w-[700px] uppercase font-type-en text-6xl md:text-title-lg font-extrabold leading-[.8]">
+                  <RisingText 
+                    text={'why'}
+                    className=""
+                  />
+                </div>
               </div>
-            {/* )
-          })
-        } */}
+
+              <div className="border-t mt-2 md:mt-8 pt-1 md:pt-4 max-w-[260px] ml-auto">
+                <RisingText 
+                  text={'왜 꼭 우리여야 할까?'}
+                  className="md:text-sm"
+                />
+              </div>
+            </div>
+
+          </section>
+          <div className="w-full md:w-1/2 top-[14em] pb-[14em] left-0 relative md:top-auto break-keep">
+          {
+            why.map(item=> <div key={item.title} className="mb-20">
+                  <animated.div
+                    style={motion(0)}
+                  >
+                    <RisingText 
+                      text={item.title}
+                      className="text-2xl md:text-4xl"
+                    />
+                  </animated.div>
+                  {
+                    item.subject && 
+                    <animated.div
+                      style={motion(0)}
+                    >
+                      <RisingText 
+                        text={item.subject}
+                        className="text-xl md:text-2xl"
+                      />
+                    </animated.div>
+                  }
+                  <animated.div
+                    style={motion(1)}
+                  >
+                    <RisingText 
+                      text={item.detail}
+                      className="text-sm md:text-lg mt-2 md:mt-4 leading-6 md:leading-7"
+                    />
+                  </animated.div>
+                    
+                </div>)
+          }
+          
+              
+          </div>
+
+        </div>
       
       </div>
       

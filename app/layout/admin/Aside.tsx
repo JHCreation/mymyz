@@ -6,11 +6,14 @@ import { menus } from "./menu";
 // import { menus } from "~/components/nav/menu/Menus";
 import { Link } from "@remix-run/react";
 import useLogout from "~/api/user/hooks/useLogout";
+import { handleLogout } from "~/api/auth/useAuth";
+import { useLogState } from "~/store/store";
 
 
 export default function Aside () {
+  const { setLog }= useLogState()
   const [open, setOpen] = useState(true)
-  const { handleLogout } = useLogout({})
+  // const { handleLogout } = useLogout({})
 
   // const position= isPath ? 'md:fixed' : 'md:relative'
   // console.log(isPath)
@@ -41,7 +44,7 @@ export default function Aside () {
               <MenuItems menus={menus} level={0}/> 
               }
 
-              <div onClick={handleLogout} className="w-full mt-4 btn btn-sm btn-warning">로그아웃</div>
+              <div onClick={e=>handleLogout(setLog)} className="w-full mt-4 btn btn-sm btn-warning">로그아웃</div>
             </div>
             
           </div>

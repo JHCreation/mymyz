@@ -27,7 +27,11 @@ export interface UserToken {
   access_token: string
   token_type: string
   userid: string
+  refresh_token: string
 }
+
+
+
 
 export interface UserResponse<T> {
   response: Response

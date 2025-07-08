@@ -1,31 +1,22 @@
 
 import { useQuery, keepPreviousData, useMutation, UseMutationResult } from "@tanstack/react-query";
-import { Dispatch, ReactNode, SetStateAction, Suspense, createContext, useCallback, useContext, useRef } from 'react';
-// import queryOptions from '~/api/category/queryOption';
+import { Dispatch, SetStateAction, Suspense, createContext, useCallback, useContext, useRef } from 'react';
 
 import { useState, useEffect, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
 import { ColDef, ModuleRegistry, ValueFormatterParams, RowSelectionOptions, SelectionColumnDef } from 'ag-grid-community';
 import { AG_GRID_LOCALE_KR } from '../_grid/agGridLocal';
 import Pagination from '~/components/grid/Pagination';
-// import useSchemas from '~/api/category/useSchemas';
 
 import { FiltersType, GroupFilterType, gqlFilters } from "@/utils/data/filterQry";
-import { Category, CategoryList } from "@/@types/category";
-import { generateUID } from "@/utils/validate/guid";
 import _ from "lodash";
 
 import AsideFilter from "../_grid/(filters)/AsideFilter";
-import { LogTypes } from "@/@types/user";
 import { Loading } from "@/components/ui/Loading";
-import { useCategoryState, useLogState } from "~/store/store";
+import { useLogState } from "~/store/store";
 
-import Create from "./Create";
 import Delete from "./Delete";
-import Update from "./Update";
 import { CommList } from "~/@types/queryType";
-import { FloatingOverlay } from "@floating-ui/react";
-import Dialog from "~/components/ui/Dialog";
 import { DataListContext } from "./GridDataType";
 
 import { TextFilterModule } from 'ag-grid-community'; 
@@ -35,6 +26,8 @@ import { CustomFilterModule } from 'ag-grid-community';
 import { HighlightChangesModule } from 'ag-grid-community'; 
     
 import { AllCommunityModule, ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, themeBalham, } from 'ag-grid-community';
+import Create from "./Create";
+import Update from "./Update";
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 // ModuleRegistry.registerModules([ ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, TextFilterModule,NumberFilterModule, DateFilterModule, CustomFilterModule, HighlightChangesModule  ]);
@@ -87,20 +80,21 @@ interface GridDataProps {
   useSchemas: any
   queryOptions: any
   filterComponent?: any
+  idKey: string
 }
-
-export default function GridData<T> ({ useSchemas, queryOptions, filterComponent }) {
+const size= 20
+export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filterComponent, idKey }) {
   // const log= useRecoilValue(logState);
   const { log, setLog }= useLogState()
-  const keyname= queryOptions.name;
-  const [createOpen, setCreateOpen]= useState(true)
-  const [updateOpen, setUpdateOpen]= useState<any>(false)
+  const tableName= queryOptions.name;
+  const [createOpen, setCreateOpen]= useState(false)
+  const [updateOpen, setUpdateOpen]= useState(false)
 
 
   const [filters, setFilters]= useState<FiltersType>(defaultFilters)
 
   const [page, setPage]= useState<number>(1)
-  const [pageSize, setPageSize]= useState<number>(10)
+  const [pageSize, setPageSize]= useState<number>(size)
   const { queryFn: mutationFn }= queryOptions.filter(page-1, pageSize);
   const mutation:any = useMutation({
     mutationFn
@@ -136,7 +130,7 @@ export default function GridData<T> ({ useSchemas, queryOptions, filterComponent
 
  
   // const lists:any= data;
-  const {schema, getDefaultSchema, setSchema, init, category}= useSchemas({
+  const {schema, getDefaultSchema, setSchema, init, category, create}= useSchemas({
     keyname: queryOptions.name, 
   });
 
@@ -268,66 +262,61 @@ export default function GridData<T> ({ useSchemas, queryOptions, filterComponent
   } */
 
   const reload= useCallback(({filters, page, pageSize})=> {
-    // console.log('debounce: ', filters, pageSize)
+    console.log('debounce: ', filters, page, pageSize)
     setPage(1)
     mutation.mutate({ 
       data: filters, access_token: log?.access_token, 
       page: page-1, size: pageSize 
     })
-  }, [])
+  }, [lists])
   
 
   const [deleteOn, setDeleteOn]= useState(false)
-  const [test, setTest]= useState(false)
+  // const [test, setTest]= useState(false)
 
-  console.log(lists)
   const myTheme = themeBalham.withParams({
-    spacing: 2,
-    accentColor: 'red',
-});
+    spacing: 3,
+    // accentColor: 'yellow',
+  });
+
+
+  const rowSelection:RowSelectionOptions = useMemo(() => { 
+    return {
+          mode: 'multiRow',
+          checkboxes: true,
+          enableClickSelection: true,
+      };
+  }, []);
+
   return (
     category && 
     <DataListContext.Provider value={{ 
       filterId, filters, setFilters, defaultFilters,
+      tableName, 
+      useSchema,
       useSchemas,
       category: category,
       page, setPage,
       pageSize, setPageSize,
-      log, queryOptions, reload, checked
+      log, setLog,
+      queryOptions, reload, checked,
+      idKey,
     }}>
-      {/* <div className="hidden">
-        {JSON.stringify(lists?.category_list)}
-      </div> */}
-      <Dialog open={test} setOpen={setTest} outsidePress={false}>
-        <div className={`h-[50dvh] bg-white my-10 p-10`}>
-          tests
-        </div>
-      </Dialog >
-      <div className="btn" onClick={e=>setTest(true)}>open</div>
+      <div className="hidden">
+        {JSON.stringify(lists?.list)}
+      </div>
       <Delete 
         checked={checked} deleteOn={deleteOn} setDeleteOn={setDeleteOn} 
-        keyname={keyname}
+        // tableName={tableName}
         schema={schema}
         setSchema={setSchema}
         // useSchemas={useSchemas}
       />
-      <Create 
-        open={createOpen}
-        setOpen={setCreateOpen}
-        keyname={keyname}
-        schema={schema}
-        setSchema={setSchema}
-        useSchemas={useSchemas}
-        // onSubmit={onSubmit}
-      />
-      <Update 
+      <Create open={createOpen} setOpen={setCreateOpen} />
+      <Update
         open={Boolean(updateOpen)}
         data={updateOpen}
         setOpen={setUpdateOpen}
-        keyname={keyname}
-        schema={schema}
-        setSchema={setSchema}
-        useSchemas={useSchemas}
       />
       {/* <div className="btn" onClick={e=> setOpen(true)}>click</div>
       <Modal open={open} className="fixed top-0 left-0 w-full h-full">
@@ -401,7 +390,7 @@ export default function GridData<T> ({ useSchemas, queryOptions, filterComponent
                       defaultColDef={defaultColDef}
                       // pagination={true}
                       // paginationPageSize={size}
-                      // rowSelection='multiple'
+                      rowSelection={rowSelection}
                       editType={"fullRow"}
                       // suppressRowClickSelection={true}
                       // rowMultiSelectWithClick={true}

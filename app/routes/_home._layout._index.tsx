@@ -47,7 +47,7 @@ export const clientLoader = async ({ params, serverLoader }) => {
 };
 
 export default function Index() {
-  const { dehydratedState } = useLoaderData<typeof getCategory>()
+  const { dehydratedState } = useLoaderData<typeof getWorks>()
   // console.log(dehydratedState)
   return (
     <></>

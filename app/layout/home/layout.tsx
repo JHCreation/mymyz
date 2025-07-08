@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react'
-import Main from './main/Main'
 import Part1 from './Part1'
 import { IParallax, IParallaxLayer, Parallax, ParallaxLayer } from '@react-spring/parallax'
 import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react'

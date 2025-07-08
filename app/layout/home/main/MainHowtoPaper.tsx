@@ -70,7 +70,6 @@ export default function MainHowtoPaper () {
   }))
 
   
-  
   return (
     <div ref={containerRef} className="">
       {
@@ -135,14 +134,19 @@ const Type02= ({val})=> {
       <div className="flex flex-col px-4 md:px-8 py-3 md:py-5 w-full max-w-container-ms mx-auto">
         
         <div className="flex flex-col ">
-          <div className="font-type-en text text-4xl md:text-title text-black leading-none font-extrabold mt-2">{val.title}</div>
+          <div className="uppercase- font-type-en text text-3xl md:text-7xl text-black leading-none font-extrabold mt-2">{val.title}</div>
+          
         </div>
 
-        <div className=" w-full max-w-[800px] border-t pt-2 mt-4 md:mt-8 ml-auto">
+        <div className=" w-full max-w-[700px] border-t- pt-2 mt-4 md:mt-2 ml-auto">
           <div className="text-xs">
             {val.name}
           </div>
-          <div className="w-full leading-snug max-w-[500px] relative text-left py-3 text-sm md:text-xl text-black break-keep ">
+          <div className="w-full border-t my-2"></div>
+          <div className="text-xs">
+            {val.subject}
+          </div>
+          <div className="w-full leading-snug max-w-[500px] relative text-left py-3 text-sm md:text-xl text-black break-keep mt-2 md:mt-6">
             {val.desc}
           </div>
         </div>
@@ -151,7 +155,7 @@ const Type02= ({val})=> {
       <div className={`relative ${val.color} bg-black bg-opacity-55 overflow-hidden`}>
         <img 
           src={val.image} 
-          className="w-full h-full object-cover opacity-50 grayscale" 
+          className="w-full aspect-square md:aspect-[2] object-cover opacity-50 grayscale" 
         />
       </div>
     

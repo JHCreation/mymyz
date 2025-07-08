@@ -11,8 +11,6 @@ import useSchemas from "~/api/user/useSchemas";
 import { UserList } from "~/@types/user";
 
 export default function AdminUsers () {
-  const { log, setLog }= useLogState()
-  console.log(log)
   return (
     <div className="">
       <Suspense fallback={<div>Loading...</div>}>

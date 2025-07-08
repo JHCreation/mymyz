@@ -2,6 +2,7 @@ import {fastapi, FastapiProps} from '@/api/api';
 import {FilesResponse, FilesUpload} from '@/@types/files';
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import QueryString from 'qs';
+import { FileItemType } from '~/components/fields/FieldType';
 
 
 
@@ -44,7 +45,7 @@ class FilesQuery {
     const option: FastapiProps= { 
       operation: 'DELETE', 
       url: `/api/${this.name}/delete`, 
-      params: {path},
+      params: { path },
       access_token,
       option: { 
         cache: 'no-store', 
@@ -78,25 +79,13 @@ class FilesQuery {
 
   updateFiles= async (param)=> {
     console.log('update:', param)
+    
+    const { fileDatas: { file: files, path }, access_token }= param;
+    const delRes:FilesResponse<FilesUpload>[]= await this.deleteFiles({ path, access_token })
+    // if( files?.length == 0 ) {
+    //   return delRes;
+    // }
     // return
-    const { fileDatas: { file: files }, access_token }= param;
-    console.log(param.fileDatas.uploadPath)
-
-    /* const option: FastapiProps= { 
-      operation: 'DELETE', 
-      url: `/api/${this.name}/delete`, 
-      params: { path: param.fileDatas.uploadPath },
-      access_token,
-      option: { 
-        cache: 'no-store', 
-        // next: { revalidate: 10 }
-      } 
-    } */
-    const delRes:FilesResponse<FilesUpload>[]= await this.deleteFiles({path: param.fileDatas.uploadPath, access_token})
-    // console.log(delRes)
-    if( files?.length == 0 ) {
-      return delRes;
-    }
     
     //직렬 처리
     /* const res:any= []
@@ -118,33 +107,34 @@ class FilesQuery {
 }
 
 
-export interface FileInfoType {
-  id?: string
-  method?: 'add'|'override'
-  thumbnail?: string
-  uploadFullPath?: string
-  uploadRootPath?: string
-  name: string
-  uploadPath: string
-  file: File
-}
+// export interface FileInfoType {
+//   id?: string
+//   method?: 'add'|'override'
+//   thumbnail?: string
+//   uploadFullPath?: string
+//   uploadRootPath?: string
+//   name: string
+//   uploadPath: string
+//   file: File
+// }
 
 const handleFiles= async ({ url, name, fileInfo, access_token })=> {
   console.log(fileInfo)
-  const { id, method, name: fileName, thumbnail, uploadPath, uploadFullPath, uploadRootPath }:FileInfoType= fileInfo;
+  // const { file, id, method, name: fileName, thumbnail, uploadPath, uploadFullPath, uploadRootPath }:FileItemType= fileInfo;
+  const { file, method, name: fileName, uploadPath }:FileItemType= fileInfo;
   // const promise:Promise<any>[]= []
   const reponseResult:FilesResponse<FilesUpload>[]= []
-  const formFile= fileInfo.file //formdata file 객체
-  const file = formFile;
+  // const formFile= fileInfo.file //formdata file 객체
+  // const file = formFile;
   const chunk_size = 1024 * 1024; // Chunk size set to 1 MB
   let offset = 0;
   let chunk_number = 0;
   if (file) {
     // Loop until all chunks are uploaded
     while (offset < file?.size) {
-      console.log(chunk_number, formFile, String(Math.ceil(file?.size / chunk_size)))
+      console.log(chunk_number, file, String(Math.ceil(file?.size / chunk_size)))
       // Slice the file into chunks
-      const chunk = formFile.slice(offset, offset + chunk_size);
+      const chunk = file.slice(offset, offset + chunk_size);
 
       // Create a blob from the chunk
       const chunk_blob = new Blob([chunk], { type: file.type });
@@ -158,6 +148,7 @@ const handleFiles= async ({ url, name, fileInfo, access_token })=> {
       formData.append("total_chunks", String(Math.ceil(file?.size / chunk_size))
       );
       formData.append("path", uploadPath );
+      formData.append("method", method );
 
       // Send the chunk data to the server using fetch API
 

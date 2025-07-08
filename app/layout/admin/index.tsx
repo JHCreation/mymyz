@@ -11,6 +11,7 @@ import qs from 'qs'
 
 
 
+
 const toastId= 'admin-main'
 const exception= [
   '/login',
@@ -22,10 +23,10 @@ export default function Admin ({data}: { data?: any }) {
   const navigate= useNavigate()
   const location= useLocation()
   const { pathname }= location;
-  const except= exception.indexOf(pathname.split('/admin')[1])
+  // const except= exception.indexOf(pathname.split('/admin')[1])
 
   const {authorization}= useTokenAuth();
-
+  console.log('진입 컴포넌트')
 
   useEffect(()=> {
     console.log('auth start', pathname, log)
@@ -36,8 +37,8 @@ export default function Admin ({data}: { data?: any }) {
     console.log(log, pathname)
     if( log?.state == null ) return;
     if( !log?.is_login ) {
-      console.log(searchParams.get('referer'), pathname)
-      const isLoginPath= searchParams.get('referer') && pathname == '/admin/login'
+      // console.log(searchParams.get('referer'), pathname)
+      // const isLoginPath= searchParams.get('referer') && pathname == '/admin/login'
       const referer= searchParams.get('referer') ?? pathname
       const qsReferer= `?${qs.stringify({referer})}`
       if( pathname != '/admin/login' ) {
@@ -55,7 +56,7 @@ export default function Admin ({data}: { data?: any }) {
   const outletComp= <Outlet 
     // context={{data}}
   />
-  if( except != -1 ) return outletComp
+  // if( except != -1 ) return outletComp
   if( !log.is_login ) return null
   
   return <AdminWrapper>

@@ -9,6 +9,7 @@ import MainIntro from './MainIntro'
 import Intro from './Intro'
 import MainWorks from './MainWorks'
 import MainWhy from './MainWhy'
+import MainPointMention2 from './MainPointMention2'
 
 
 
@@ -20,7 +21,7 @@ export default function Main({dehydratedState, init, setInit}) {
       // className={init ? '' : 'h-dvh overflow-hidden'}
       // className={'h-dvh overflow-hidden'}
     >
-    {!init && <Intro setOn={setInit} />}
+    {/* {!init && <Intro setOn={setInit} />} */}
       
     {/* <div className="mt-nav-m md:mt-nav"> */}
       <MainLogo />
@@ -31,6 +32,7 @@ export default function Main({dehydratedState, init, setInit}) {
       <MainHowtoPaper/>
       <MainWorks dehydratedState={dehydratedState}/>
       <MainWhy />
+      <MainPointMention2 />
       <MainOurTeam />
       
       {/* <div className="h-96"></div> */}

@@ -72,7 +72,7 @@ export default function EditorInput ({ option, setSchema, ...props }:any) {
   }, []) */
   return (
     <>
-    <div className='max-w-[600px] flex flex-col bg-base-300 border border-base-content border-opacity-20 p-2 rounded-btn'>
+    <div className='max-w-full flex flex-col bg-base-300 border border-base-content border-opacity-20 p-2 rounded-btn'>
       {/* <span className='text-xs'>{name}</span> */}
       <div className={`${err==true ? 'text-error' : ''} text-xs`}>
         {name}

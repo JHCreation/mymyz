@@ -12,7 +12,6 @@ import { parseISO, format } from 'date-fns';
 import FileInput from '~/components/inputs/.client/FileInput';
 import { useCategoryState } from '~/store/store';
 
-import queryOptions from "~/api/category/queryOption";
 import CheckInput from '~/components/inputs/CheckInput';
 import EditorInput from '~/components/inputs/EditorInput';
 
@@ -55,6 +54,7 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
   const defaultValue:SchemProps= {
     [`id`]: {
       key: `id`,
+      type: 'text',
       name: '아이디',
       value: guidQ1(),
       validate: [ { value: 'pass', } ],
@@ -73,6 +73,7 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
     },
     [`key`]: {
       key: `key`,
+      type: 'text',
       name: '키',
       value: guidQ1(),
       // disabled: true,
@@ -102,6 +103,7 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
     
     [`title`]: {
       key: `title`,
+      type: 'text',
       name: '제목',
       value: '',
       validate: [
@@ -124,6 +126,7 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
 
     [`content`]: {
       key: `content`,
+      type: 'text',
       name: '내용',
       value: '',
       validate: [
@@ -206,6 +209,7 @@ export const getDefaultSchema= ({ keyname, category, option }: SchemParamProps)=
 
     [`create_date`]: {
       key: `create_date`,
+      type: 'text',
       name: '생성일자',
       value: '',
       validate: [ { value: true, } ],

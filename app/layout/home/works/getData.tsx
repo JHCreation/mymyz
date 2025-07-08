@@ -88,7 +88,7 @@ export async function getWorks ({
   } );
 
 
-  return json({ dehydratedState: dehydrate(queryClient) })
+  return { dehydratedState: dehydrate(queryClient) }
 }
 
 export async function getWorksDetail({

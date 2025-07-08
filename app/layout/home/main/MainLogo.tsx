@@ -96,8 +96,11 @@ export default function MainLogo () {
         <div className="sticky h-dvh top-0 flex items-center overflow-hidden pt-nav-m md:pt-nav">
           <div className="h-full max-h-dvh w-full flex flex-col justify-between  ">
             <div className=" font-type-en text-stroke-[1px] font-black text-stroke-gray-500 text-stroke-fill-transparent leading-[.85] text-[40px] md:text-[60px] uppercase italic">
-              <h1 className="">Web/Graphic</h1>
-              <h1 className="">Unique Design</h1>
+              {/* <h1 className="">Practical. </h1>
+              <h1 className="">Powerful.</h1>
+              <h1 className="">Proven.</h1> */}
+              <h1 className="">We Work as One</h1>
+              <h1 className="">Designed to Deliver</h1>
             </div>
             
             <div className="absolute top-0 left-0 w-full h-full max-h-svh flex items-center justify-center">
@@ -170,7 +173,7 @@ export default function MainLogo () {
                   })
                 }
               </animated.div> */}
-              <h1 className="">Let’s create</h1>
+              <h1 className="">Rooted in Your Brand’s DNA</h1>
             </animated.div>
             {/* <div className="absolute top-[50%] left-[13%] ">
               <animated.div 

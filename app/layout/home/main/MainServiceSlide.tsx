@@ -43,7 +43,7 @@ export default function MainServiceSlide () {
       const progress= scrolls.getProgress();
       // if( !progress ) return
       // console.log(progress)
-      trailApi.start((i)=> ({ to: { x: progress }, delay: i*20}))
+      trailApi.start((i)=> ({ to: { x: progress }, delay: i*30}))
     }
   })
   const { scrollY }= scroll;
@@ -86,7 +86,7 @@ export default function MainServiceSlide () {
       if( !dom ) return ''
       if( !screen?.width ) return ''
       const width= screen?.width?.get() || dom?.width
-      const moving= slideDistance-width+450;
+      const moving= slideDistance-width+450+100;
       const res= -((progress) * (moving))
       // console.log(progress, slideDistance, dom?.width)
       return `${res > 0 ? 0 : (-res > moving ? -(moving) : res )}px`
@@ -95,9 +95,9 @@ export default function MainServiceSlide () {
 
   return (
     <div>
-      <section ref={containerRef} className=''
+      <section ref={containerRef} className='max-w-[2000px] mx-auto'
         style={{
-          height: `${service.length*100}svh`
+          height: `${service.length*80}svh`
         }}
       >
         <div ref={sectRef} className="sticky min-h-[400px] h-dvh top-0 p-nav flex items-center overflow-hidden">
@@ -139,22 +139,20 @@ export default function MainServiceSlide () {
                       ...motion(i),
                     }}
                   >
-                    <div className={`w-full border min-h-[35dvh] ${color} pt-3 pl-3 md:pt-6 md:pl-6 flex flex-col`}>
+                    <div className={`w-full border min-h-[35dvh] ${color} pt-5 pl-5 md:pt-10 md:pl-10 flex flex-col`}>
                       <div className="">
-                        {/* <div className={`font-type-1 font-extralight text-xl leading-none`}>{String(i+1).padStart(2, '0')}</div> */}
-                        
-                        <div className="text-xl md:text-4xl font-black font-type-en leading-none">{name}</div>
+                        <div className="text-2xl md:text-4xl font-black font-type-en leading-none">{name}</div>
                       </div>
 
                       
                       <div className="leading-4 text-xs flex-1 w-full flex flex-col justify-end">
 
                       <div className="mt-10">
-                        <ul className="w-1/2 ml-auto">
+                        <ul className="w-3/4 md:w-2/3 break-keep text-wrap ml-auto">
                         {
                           tech.map(tech=> {
                             return (
-                              <li key={tech} className="border-t px-1 py-0.5"> {tech} </li>
+                              <li key={tech} className="border-t px- py-1"> {tech} </li>
                             )
                           })
                         }

@@ -10,10 +10,12 @@ import { createContext, useEffect, useRef, useState } from "react";
 import { Navigation } from "./nav/Navigation";
 import { useDeviceStore, useRootContainer } from "~/store/store";
 import 'react-toastify/dist/ReactToastify.css';
-import './tastifyStyle.css';
+// import './tastifyStyle.css';
 import MainFooter from "./main/MainFooter";
 import { ScreenContext, Size } from "./Layout1";
 import Footer from "./main/Footer";
+import { ToastContainer } from "react-toastify";
+import { toastContainerId } from "./contact/ContactInputs";
 
 /* type Size = {
   width: any
@@ -72,12 +74,12 @@ export default function HomeWrapper ({init, isMobile, children}) {
     
   };
 
-  console.log('isMobile',isMobile)
+  // console.log('isMobile',isMobile)
   return (
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
 
     <div 
-      className={init ? '' : 'h-dvh overflow-hidden'} 
+      // className={init ? '' : 'h-dvh overflow-hidden'} 
       data-theme="lemonade"
     >
       <div id="custom-root-id" className="fixed top-0 left-0 z-30 w-dvw" ref={body}>
@@ -87,6 +89,20 @@ export default function HomeWrapper ({init, isMobile, children}) {
       {/* <Outlet /> */}
       <MainFooter />
       <Footer transition={transition} menuClick={handleClick} />
+      <div className="fixed bottom-0 z-20">
+        <ToastContainer
+          containerId={toastContainerId}
+          theme="dark"
+          // stacked
+          position="bottom-center"
+          // limit={1}
+          // className={"!w-full max-w-[500px] "}
+          // toastClassName={"!p-5"}
+          // bodyClassName={"!p-2 justify-center"}
+          
+          // transition={bounce}
+        />
+      </div>
 
       {
       !isMobile && 

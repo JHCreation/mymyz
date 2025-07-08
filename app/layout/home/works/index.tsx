@@ -43,10 +43,11 @@ const Works= ({params})=> {
               let imgPath
               try {
                 imgPath= JSON.parse(d.thumb)
+                console.log(imgPath)
               } catch (error) {
                 
               }
-              let imgUrl= imgPath ? `${staticUrl}${imgPath}` : ''
+              let imgUrl= imgPath ? `${staticUrl}${imgPath[0]}` : ''
               return (
                 <Link 
                   to={`./${d.id}`} key={d.id} 

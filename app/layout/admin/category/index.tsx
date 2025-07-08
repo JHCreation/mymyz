@@ -1,31 +1,31 @@
 import { Suspense, useEffect, useState } from "react";
 import useSchemas from "~/api/category/useSchemas";
-import queryOptions from '~/api/category/queryOption';
 import GridData from "../_grid/GridData";
 import { InputWrap } from "../_grid/(filters)/Fitlers";
 import FilterInput from "../_grid/(filters)/FilterInput";
 import FilterCheck from "../_grid/(filters)/FilterCheck";
 import FilterDate from "../_grid/(filters)/FilterDate";
 import FilterSelect from "../_grid/(filters)/FilterSelect";
+import queryOptions from "./queryOption";
+import useSchema from "./schemas";
 
 export default function Category () {
-  /* const {schema, getDefaultSchema, setSchema, init, category}= useSchemas({
-    keyname: queryOptions.name, 
-  }); */
   return (
     <div className="">
       <Suspense fallback={<div>Loading...</div>}>
-        <GridData 
+        <GridData
+          useSchema={useSchema}
           useSchemas={useSchemas}
           queryOptions={queryOptions} 
           filterComponent={FilterComponent}
+          idKey={'key'}
         />
       </Suspense>
     </div>
   )
 }
 
-const FilterComponent= ({ init, handleInit, category})=> {
+const FilterComponent= ({ init, handleInit, category })=> {
 
   const categoryItem= category['status']
   const categoryGender= category['loote']

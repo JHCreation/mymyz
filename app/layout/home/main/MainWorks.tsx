@@ -4,67 +4,19 @@ import { Suspense, useCallback, useContext, useEffect, useRef, useState } from "
 import { ScreenContext } from "../Layout1";
 import SectionScroll from "./SectionScroll";
 import { RisingText } from "./RisingText";
-import { characterTitle, characterDesc } from "./Service";
-import _ from 'lodash'
-import banner_1 from "/images/13102.jpg";
-
-// import { json } from "@remix-run/node";
-import { json, Link, Outlet, useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
+import { Link, Outlet, useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
 import queryOptions from '~/api/works/queryOption';
-
-
 import {
   HydrationBoundary,
   useQuery,
 } from '@tanstack/react-query'
-import { LoaderFunctionArgs } from "@remix-run/node";
-// import { loader } from "../../../routes/_index";
-import { getCategory, homeGetParams, homeQuery } from "../getData";
 import { SpinerLoading } from "~/components/ui/Loading";
-import { Detail } from "../works/WorksDetail";
-import { useRootContainer } from "~/store/store";
-// import Dialog from "~/components/ui/Dialog";
-import { getWorks } from "../works/getData";
-
-
-/* const query= (page,size)=> queryOptions.list(page, size)
-const getParams= ({searchParams})=> {
-  const page= searchParams.get("page");
-  const size= searchParams.get("size");
-  const pageVal= Number(page) || 1;
-  const sizeVal= Number(size) || 10;
-  return { page: pageVal, size: sizeVal }
-} */
-
-/* export async function loader({
-  request,
-}: LoaderFunctionArgs) {
-  console.log(request)
-  return;
-  const url = new URL(request.url);
-  const { page, size }= getParams({ searchParams: url.searchParams })
-
-  const queryClient = new QueryClient()
-  const { queryKey, queryFn }= query(page, size);
-  await queryClient.prefetchQuery({ 
-    queryKey, queryFn,
-    // staleTime: 5000, 
-  } );
-
-  return json({ dehydratedState: dehydrate(queryClient) })
-} */
-
-/* export const loader = async () => {
-  return json([
-    { id: "1", name: "Pants1" },
-    { id: "2", name: "Jacket1" },
-  ]);
-}; */
+import _ from 'lodash'
+import banner_1 from "~/assets/images/banner-2.webp";
 
 
 export default function MainWorks ({dehydratedState}) {
-  // const { dehydratedState } = useLoaderData<typeof getWorks>()
-  // console.log(dehydratedState)
+
   return (
     <>
     <HydrationBoundary state={dehydratedState}>
@@ -75,7 +27,6 @@ export default function MainWorks ({dehydratedState}) {
     </>
   )
 }
-
 
 
 
@@ -99,7 +50,6 @@ export function MainWork () {
   const staticUrl= typeof window !== 'undefined' ? window?.ENV?.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
   const { params, option: { gridStyle} } = useLoaderData<any>()
   const { page, size }= params;
-  // console.log(params)
 
   const domain= typeof window !== 'undefined' ? window.ENV.REMIX_PUBLIC_UPLOAD_PATH : process.env.REMIX_PUBLIC_UPLOAD_PATH;
 
@@ -112,22 +62,6 @@ export function MainWork () {
   })
 
   const { data, isPending, isLoading }= query
-  // console.log(data, 'server?? client??')
-
-  /* const { queryKey:mutationKey, queryFn: mutationFn }= homeQuery(page, size);
-  const mutation = useMutation({
-    mutationKey,
-    mutationFn,
-    // staleTime: 3*1000,
-    gcTime: 6000,
-  }) */
-  const onMutate= (pg)=> e=> {
-    // mutation.mutate({})
-    // setPage(pg)
-  }
-
-
-
   const {screen, windowSize} = useContext(ScreenContext)
   const containerRef= useRef<HTMLDivElement>(null)
   
@@ -142,7 +76,7 @@ export function MainWork () {
       
       const progress= scrolls.getProgress()
       if( !progress ) return
-      const height= scrolls?.position ? scrolls.position.containerDom.height : 0;
+      // const height= scrolls?.position ? scrolls.position.containerDom.height : 0;
       trailApi.start({y: progress})
     }
   })
@@ -176,32 +110,18 @@ export function MainWork () {
     y: trails[i].y.to(progress=> {
       return `-${(1+(progress*200))}px`
       return `-${(1+(progress*250))}%`
-
-
-      /* const y= calcCard(0,progress)
-      if( !y ) return ''
-      return `-${(1+y)*50}%`; */
     })
   }), [])
-  // console.log(arr)
-
   
-  // console.log('pending', query.isLoading, query.isPending)
-
-  const navigate = useNavigate();
-  const [open, setOpen]= useState(false)
-  const [detail, setDetail]= useState<any>(null)
-  
-
   const style= useRef<any>(null)
   useEffect(()=> {
+    console.log(data)
     if( data )
     style.current= data?.list?.map(v=> {
       return [_.random(4, 1)*10, _.random(22, 8)*20, _.random(6, 4)]
     })
   }, [data])
   
-  // console.log(style, data)
   return (
     <>
     
@@ -227,8 +147,6 @@ export function MainWork () {
                 text={'Works'}
                 className=""
               />
-              {/* <div className="btn" onClick={onMutate(0)}>재시도</div>
-              <div className="btn" onClick={onMutate(1)}>재시도</div> */}
           
             </div>
           
@@ -252,7 +170,7 @@ export function MainWork () {
               } catch (error) {
                 
               }
-              let imgUrl= imgPath ? `${staticUrl}${imgPath}` : banner_1
+              let imgUrl= imgPath ? `${staticUrl}${imgPath[0]}` : banner_1
               
               return (
                 <li key={i} className="md:w-full py-2 md:py-5 pr-1 md:pr-3"

@@ -92,6 +92,7 @@ const FileInput= ({ option, setSchema, schemas, method }:any)=> {
 
   const handleValue= (e)=> {
     const targetFiles= e.target.files;
+    console.log(targetFiles)
     const targetVal= Object.keys(targetFiles).map( idx=> {
       const file= targetFiles[idx];
       return {
@@ -222,7 +223,7 @@ const FileInput= ({ option, setSchema, schemas, method }:any)=> {
       {
         crud == 'update' &&
         <div className="mt-1">
-          <div className="list flex flex-wrap gap-1 w-full" >
+          <div className="flex flex-wrap gap-1 w-full" >
             
             { 
               value && Array.isArray(value) && value?.length > 0 && value.map((val, key)=> {
@@ -315,7 +316,7 @@ const FileInput= ({ option, setSchema, schemas, method }:any)=> {
                 
                 <SortableList 
                   onSortEnd={onSortEnd} 
-                  className="list flex flex-wrap gap-1 w-full" 
+                  className="flex flex-wrap gap-1 w-full" 
                   draggedItemClassName="file-inputs-dragged"
                 >
                 {value?.length && value.map((val, key)=> {

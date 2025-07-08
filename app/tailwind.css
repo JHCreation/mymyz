@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, lemonade, nord, dim;
+  themes: light --default, dim --prefersdark, lemonade, nord;
 };
 @plugin "@designbycode/tailwindcss-text-stroke";
 @theme {

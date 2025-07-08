@@ -127,6 +127,8 @@ export default function AdminLogin () {
           state: 'login',
           is_login: true,
         }
+        // setLog(responseLog)
+
         console.log(searchParams.get('referer'))
         if( searchParams.get('referer') ) return navigate(`${searchParams.get('referer')}`);
         navigate('/admin')

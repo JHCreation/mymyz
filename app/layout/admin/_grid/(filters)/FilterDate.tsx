@@ -43,7 +43,7 @@ export default function FilterDate({ init, id }) {
 
   const go= useRef(true)
   const update= useCallback(({from, to}:any)=> {
-    console.log('date input: ', from, to)
+    // console.log('date input: ', from, to)
     setFilters((filters)=> {
       const filtersCopy= _.cloneDeep(filters);
       go.current= true
@@ -133,7 +133,7 @@ export default function FilterDate({ init, id }) {
         버튼
       </div>
     ) */
-    console.log(props)
+    // console.log(props)
     return <div className="relative">
       <input 
         ref={ref}

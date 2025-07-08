@@ -1,11 +1,9 @@
-
-
-import Admin from "~/layout/admin";
-
-import type { LinksFunction } from "@remix-run/node"; // or cloudflare/deno
-import { Await, defer, MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
-import { lazy, Suspense } from "react";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
+import { MetaFunction, Outlet, useLoaderData } from "@remix-run/react";
 import { ClientOnly } from "remix-utils/client-only";
+import { useLogState } from "~/store/store";
+import AuthGuard from "~/components/auth/AuthGuard";
+import { LoadingsFull } from "~/layout/admin/loading/AdminLoading";
 
 export const links: LinksFunction = () => {
   return [
@@ -26,40 +24,25 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-/* export const loader = async () => {
-  
-  const slowData = new Promise((resolve) => {
-    
-    setTimeout(() => {
-      console.log('start 1 second')
-      return resolve("Loaded after 1 seconds")
-    }, 1000); // 3초 지연
-  });
-
-  return defer({
-    data: slowData,
-  });
-}; */
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const domain = url.origin;
+  return { domain };
+}
 
 export default function Index () {
-  // const { data } = useLoaderData<typeof loader>();
-  // console.log(data)
+  const { domain }:any = useLoaderData<typeof loader>();
   return (
-    <div 
-      style={{
-        cursor: `auto`
-        // cursor: `auto`
-      }}
-    >
-    {/* <Suspense fallback={<div className="mt-20 w-full h-dvh bg-red-400">Loading data...</div>}>
-      <Await resolve={data}> */}
-        {/* {(resolvedData) => resolvedData && <Admin data={data}/>} */}
-        <Admin />
-      {/* </Await> */}
-      {/* <Await resolve={data}>
-        {(resolvedData) => <p>{resolvedData}</p>}
-      </Await> */}
-    {/* </Suspense> */}
+    <>
+    <div className="bg-base-100">
+      <ClientOnly fallback={<LoadingsFull/>}>
+        {()=> <AuthGuard domain={domain} >
+          <Outlet />
+        </AuthGuard>}
+      </ClientOnly>
     </div>
+    </>
   )
 }
+
+const Loading= ()=> <div className="w-full h-dvh flex items-center justify-center bg-transparent">Loading....................</div>

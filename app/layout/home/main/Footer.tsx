@@ -13,11 +13,11 @@ const scrolls= new SectionScroll({})
 const snsLink= [
   {
     name: 'Instagram',
-    to: 'https://www.instagram.com/corenzo_house'
+    to: 'https://www.instagram.com/myz'
   },
   {
     name: 'Thread',
-    to: 'https://www.threads.net/@corenzo_house'
+    to: 'https://www.threads.net/@myz'
   },
   {
     name: 'Email',

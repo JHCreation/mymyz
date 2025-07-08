@@ -5,9 +5,6 @@ import { ScreenContext } from "../Layout1"
 import { characters } from "./Service"
 
 const scrolls= new SectionScroll({})
-
-
-// const arr= [...Array(9)]
 const len= characters.length;
 export default function MainOurTeam () {
   const {screen, windowSize} = useContext(ScreenContext)
@@ -118,7 +115,7 @@ export default function MainOurTeam () {
                       left: `calc( (100% - ${item?.width}px) / ${len-1} * ${i})`
                     }}
                   >
-                    <div className="relative aspect-[1/0.9] md:aspect-[1/1.2] p-3 md:p-5 flex">
+                    <div className="relative aspect-[1/0.9]- md:aspect-[1/1.2] p-3 md:p-5 flex">
                       <div className="flex flex-col w-full">
                         <div className="flex items-end ">
                           <div className="w-full max-w-[54px] md:max-w-[130px]">

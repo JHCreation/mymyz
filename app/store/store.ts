@@ -92,8 +92,9 @@ export const useMediaQueryState= create<MediaQueryState>((set) => ({
 
 
 
-import queryOptions from '@/api/category/queryOption';
+// import queryOptions from '@/api/category/queryOption';
 import _ from 'lodash'
+import queryOptions from "~/layout/admin/category/queryOption";
 
 const { queryFn }= queryOptions.all()
 
@@ -136,7 +137,7 @@ export interface LogTypes {
   access_token: string;
   // refresh_token: string;
   userid: string;
-  state: boolean | null | 'fail';
+  state: boolean | null ;
   is_login: boolean
 }
 export type LogState= {

@@ -8,19 +8,21 @@ import FilterCheck from "../_grid/(filters)/FilterCheck";
 import FilterDate from "../_grid/(filters)/FilterDate";
 import FilterSelect from "../_grid/(filters)/FilterSelect";
 import { WorksList } from "~/api/works/@type";
-import useSchemas from "~/api/works/useSchemas";
+import useSchemas from "~/api/works/useSchemas_1";
 import queryOptions from "~/api/works/queryOption";
+import useSchema from "./schemas";
+// import useSchema from "../../../api/category/schemas";
 
 export default function AdminWorks () {
-  // const { log, setLog }= useLogState()
-  // console.log(log)
   return (
     <div className="">
       {/* <Suspense fallback={<div>Loading...</div>}> */}
         <GridData<WorksList>
+          useSchema={useSchema}
           useSchemas={useSchemas}
           queryOptions={queryOptions} 
           filterComponent={FilterComponent}
+          idKey={'key'}
         />
       {/* </Suspense> */}
     </div>

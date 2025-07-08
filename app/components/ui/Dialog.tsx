@@ -157,3 +157,10 @@ const DialogContent = ({
     </div>
   );
 };
+
+
+Dialog.Body = ({ children }: { children: React.ReactNode }) => (
+  <div className={`modal-box- overflow-y-auto overscroll-contain duration-300 min-w-[400px] w-full max-w-[900px] scale-100 max-h-full my-auto bg-base-100 p-5 pb-0 `}>
+    {children}
+  </div>
+);

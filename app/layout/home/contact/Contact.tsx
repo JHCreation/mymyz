@@ -97,14 +97,14 @@ export default function Contact () {
       return moveY_1;
     })
   }), [])
-  
 
+  const detail= "우리의 협업은, 단순한 '외주'가 아닙니다. 우리는 귀하의 사업의 방향과 맥을 함께 읽는 실무 파트너입니다. 브랜드의 정체성과 가치를 함께 고민하며, 시장에서의 설득력을 만들어갑니다."
   return (
     <div 
       ref={containerRef} 
       className="w-full mt-nav"
     >
-      <div className=" w-full max-w-container mx-auto py-0 md:pt-40 pb-10 px-3 md:px-10" >
+      <div className=" w-full max-w-container mx-auto pt-30 md:pt-40 pb-10 px-3 md:px-10" >
         
         <div className="w-full flex">
           
@@ -117,60 +117,79 @@ export default function Contact () {
           <div className="w-full flex flex-col">
             <animated.div 
               style={motion(0)}
-              className={'h-dvh md:min-h-auto flex flex-col justify-center'}
+              className={'flex flex-col justify-center'}
             >
-              <div className="text-left max-w-[900px] uppercase font-type-en text-6xl md:text-title font-extrabold ">
+              <div className="text-left max-w-[900px] text-6xl md:text-8xl font-extrabold ">
                 <RisingText 
-                  text={'myz-'}
-                  className="leading-[.8]"
+                  text={'상담이'}
+                  className=""
+                  startDelay={delay}
+                />
+                <RisingText 
+                  text={'필요하세요?'}
+                  className=""
                   startDelay={delay}
                 />
                 
-                <span
-                  className="hover:text-stroke-[.8px] hover:text-transparent duration-500"
+                {/* <a
+                  href="mailto:corenzomarket@naver.com"
+                  className="hover:text-stroke-[.8px] hover:text-transparent duration-500 font-type-en uppercase-"
                 >
                   <RisingText 
-                    text={'creative design agency'}
-                    className="leading-[.8] "
+                    text={'corenzomarket'}
+                    className="leading-[1] "
                     startDelay={delay}
                     delay={100}
                     
                   />
-                </span>
+                  <RisingText 
+                    text={'@naver.com'}
+                    className="leading-[1] "
+                    startDelay={delay}
+                    delay={100}
+                    
+                  />
+                </a> */}
                 
                 
               </div>
-              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-5xl md:text-title font-thin ">
+              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[640px] text-4xl md:text-6xl font-thin ">
 
                 <RisingText 
-                  text={'i wish award we\'ll make it'}
-                  className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent leading-[.75]"
-                  textClassName="leading- pt-3 pl-1 italic"
+                  text={'우리에게 '}
+                  className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"
+                  textClassName="leading-5 md:leading-13 pt-3 pl-1 italic"
                   startDelay={delay}
                   delay={200}
-
+                />
+                <RisingText 
+                  text={'문의하세요'}
+                  className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"
+                  textClassName="leading-5 md:leading-13 pt-3 pl-1 italic"
+                  startDelay={delay}
+                  delay={400}
                 />
               </div>
             
             </animated.div>
 
-            <div className="break-keep ml-auto w-full max-w-[800px]">
+            <div className="break-keep ml-auto w-full max-w-[640px]">
               <animated.div 
                 style={motion(1)}
-                className={'border-t pt-8 mt-8 md:pt-12 md:mt-12 ml-auto w-full '}
+                className={'border-t pt-8 mt-8 md:pt-6 md:mt-6 ml-auto w-full '}
               >
                 <div className="max-w-[540px]">
-                  <RisingText text={'우리는 창작을 사랑합니다. 애증과도 같은 관계죠. 창작의 과정을 통해 훌륭한 프로젝트를 완성하는 경험으로 여러분과 함께 성장하고 발전해 나가고 싶습니다.'} startDelay={100} className="text-xl md:text-2xl"/>
+                  <RisingText text={detail} startDelay={1000} delay={100} className="text-xl md:text-2xl"/>
                 </div>
               </animated.div>
 
               
-              <animated.div 
+              {/* <animated.div 
                 style={motion(2)}
                 className={'mt-8 w-full max-w-[320px]'}
               >
                 <RisingText text={'기존에 없던 희소성이 짙은 새로움을 추구합니다. 새로운 디자인, 새로운 콘텐츠, 새로운 기술들을 통한 창의적인 결과물을 만들어 냅니다. 고객의 니즈를 반영해 트렌디하고 새로운 창작물을 만드는데 최선을 다 할 것입니다.'} startDelay={100} className="text-"/>
-              </animated.div>
+              </animated.div> */}
 
 
             </div>
@@ -186,7 +205,6 @@ export default function Contact () {
                     service.map((service, i)=> <li key={service.name} className={` overflow-hidden text-2xl font-bold`}>
                         <div className="">
                           <RisingText text={service.name} startDelay={(i+2)*100}>
-                            {/* {service.name} */}
                           </RisingText>
                         </div>
                     </li>)

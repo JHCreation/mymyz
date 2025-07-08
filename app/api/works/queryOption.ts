@@ -1,11 +1,11 @@
 import Queries from './queries';
 import {User} from '@/@types/user';
 import CommQuery from '../_comm/queries';
-import { Works } from './@type';
+import { WorksList } from './@type';
 
 const name= 'works';
 // const Query= new Queries(name)
-const Query= new CommQuery<Works>(name)
+const Query= new CommQuery<WorksList>(name)
 const queryKeys = {
   all: [name] as const,
   list: (page: number, size?: number) => [`${name}-list`, page, size] as const,

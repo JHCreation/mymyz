@@ -21,6 +21,18 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  build: {
+    // 프로덕션 빌드 시 terser 옵션 설정
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        // console.log 제거
+        drop_console: true,
+        // debugger 제거
+        drop_debugger: true,
+      },
+    },
+  },
 });
 
 declare global {

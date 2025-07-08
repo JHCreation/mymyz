@@ -1,7 +1,7 @@
 import { SplitText } from "@cyriacbr/react-split-text";
 import { animated, useInView, useSprings } from "@react-spring/web";
 import { Rising, Rising2, RisingText, useRisingText } from "./RisingText";
-import { service } from "./Service";
+// import { service } from "./Service";
 import { useMediaQueryState } from "~/store/store";
 import { Link } from "@remix-run/react";
 
@@ -17,6 +17,13 @@ const content= '비즈니스 시작을 위한 가장 최적의 파트너. 가장
 export default function MainGoodPartner () {
   const mediaQueryState= useMediaQueryState()
   const { mediaQuery }= mediaQueryState
+  const service= [
+    '작지만 강한 브랜드를 만들고 싶은 분',
+    '내가 가진 자원을 효율적으로 쓰고 싶은 분',
+    '비즈니스 본질에서 출발한 전략적 마케팅이 필요한 분 ',
+    '디자인, 브랜딩, 콘텐츠의 방향을 설정하는 데 도움이 필요한 분',
+  ]
+
 
   return (
     <section className='px-4 md:py-20 md:px-8 overflow-hidden w-full max-w-container mx-auto'>
@@ -26,22 +33,49 @@ export default function MainGoodPartner () {
           <div className="font-black text-5xl md:text-[2em] font-type-1 mr-2" >
             <RisingText text={'02'} className="font-thin text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"/>
           </div>
-          <div className="text-left max-w-[700px] uppercase font-type-en text-6xl md:text-title font-extrabold leading-[.8]">
+          <div className="text-left uppercase font-type-en- text-5xl md:text-8xl font-extrabold leading-[.8]">
             <RisingText 
-              text={'Good Partner'}
-              className=""
+              text={'이런 파트너가 '}
+              className="leading-[1]"
+            />
+            <RisingText 
+              text={'필요하신가요?'}
+              className="leading-[1]"
             />
           </div>
         </div>
 
-        <div className="break-keep border-t w-full max-w-[800px] ml-auto pt-6 md:pt-12 mt-6 md:mt-12 md:flex">
-          <div className="md:w-1/2 md:pr-20 text-xl md:text-2xl font-semibold">
-            <RisingText text={`${content}`} startDelay={200} delay={100} once={true} />
+        <div className="break-keep border-t w-full max-w-[800px] ml-auto pt-6 md:pt-12 mt-6 md:mt-12 ">
+          
+          <div className="md:flex">
+            <div className="md:w-1/2 md:pr-20 text-xl md:text-2xl font-semibold leading-9">
+              <RisingText text={`우리의 협업은, 단순한 '외주'가 아닙니다. 당신의 비즈니스를 위한 최고의 '전략 파트너'입니다.`} startDelay={200} delay={100} once={true} />
+            </div>
+            <div className="md:w-1/2">
+              <div className=" md:pr-20 text-sm mt-6 md:mt-0 leading-6">
+                <RisingText text={`우리는 여러분의 사업 방향과 핵심을 함께 지향하는 실무 파트너입니다. 브랜드의 정체성과 가치를 함께 고민하고, 시장에서의 설득력을 만들어갑니다. 저희는 단순히 업무를 대신 처리하는 대행사가 아닙니다. 저희의 역할은 당신의 가장 믿음직한 '업무 대리인'이자 '성장 전략가'가 되는 것입니다. `} startDelay={500} delay={100} once={true} />
+              </div>
+            
+            </div>
           </div>
-          <div className="md:w-1/2 md:pr-20 text-sm mt-6 md:mt-0">
-            <RisingText text={`우리는 우리가 할 수있는 모든 서비스를 제공합니다. 비즈니스의 상황에 따라 A-Z까지 모든 서비스를 제공할 수는 없을 수도 있습니다. 범위를 벗어나 무리한 서비스를 제공하기보다는 가장 최선의 서비스를 제공하는데 더 힘을 쓰도록 노력할 것입니다.`} startDelay={500} delay={100} once={true} />
-          </div>
+
+          <ul className="text-sm border-b w-full md:max-w-[400px]- mt-6 md:mt-12">
+            {
+              service.map((service, i)=> <li key={service} className={`border-t px-1 py-4 overflow-hidden `}>
+                  <div className="before:content-[''] before:w-1.5 before:h-1.5 before:bg-black before:block before:rounded-md before:mr-2 flex items-center">
+                    <Rising2 once={true} startDelay={(i+2)*100}>
+                      {service}
+                    </Rising2>
+                  </div>
+              </li>)
+            }
+          </ul>
+          
+          
         </div>
+        
+
+        
         
       </div>
 

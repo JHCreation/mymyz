@@ -109,7 +109,11 @@ export const Detail = ({ data:res, isLoading, open, onClose, isClient })=> {
   const data= _.clone(res);
   // const cleanContent= DOMPurify.sanitize(res?.content);
   if( isClient ) {
-    const cleanContent = DOMPurify.sanitize(res?.content, { USE_PROFILES: { html: true } });
+    const cleanContent = DOMPurify.sanitize(res?.content, { 
+      ADD_TAGS: ['iframe'],
+      ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
+      USE_PROFILES: { html: true } 
+    });
     data.content= cleanContent;
   }
   // if( data ) data.content= cleanContent;
@@ -119,7 +123,7 @@ export const Detail = ({ data:res, isLoading, open, onClose, isClient })=> {
       <BgAni onClose={onClose} open={open} />
       <ContAni open={open}>
         
-        <div className="relative h-dvh py-10 w-dvw">
+        <div className="relative h-dvh py-10 w-dvw px-2">
           <div className="w-full max-w-[800px] absolute top-10 left-1/2 -translate-x-1/2 z-50">
             <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2">
               <MagneticCursor className="btn btn-circle custom-hover" onClick={onClose}>

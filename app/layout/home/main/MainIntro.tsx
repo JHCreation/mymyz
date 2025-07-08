@@ -4,7 +4,8 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { ScreenContext } from "../Layout1";
 import SectionScroll from "./SectionScroll";
 import { Rising2, RisingText } from "./RisingText";
-import banner_1 from "/images/chani.jpg";
+// import banner_1 from "/images/chani.jpg";
+import banner_1 from "~/assets/images/banner-1.webp";
 import { service } from "./Service";
 
 const text= "합리적인 가격"
@@ -129,26 +130,48 @@ export default function MainIntro () {
           >
             <RisingText text={'01'} className="text-stroke-[1px] font-thin text-stroke-gray-500 text-stroke-fill-transparent"/>
           </animated.div>
+          
           <div className="w-full">
             <animated.div 
               style={motion(0)}
             >
-              <div className="text-left max-w-[900px] uppercase font-type-en text-4xl md:text-title font-extrabold ">
+              <div className="text-left max-w-[900px] uppercase font-type-en- text-5xl md:text-8xl font-extrabold ">
+                
+                {/* 지금, 당신의 브랜드에 필요한 실질적 변화를 시작해보세요. */}
+                
                 <RisingText 
-                  text={'memyze-'}
+                  text={'지금,'}
+                  className="leading-[1.1] text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent"
+                />
+                <RisingText 
+                  text={'브랜드에 필요한'}
+                  className="leading-[1]"
+                />
+                <RisingText 
+                  text={'실질적 변화를'}
+                  className="leading-[1]"
+                />
+                <RisingText 
+                  text={'경험해보세요.'}
+                  className="leading-[1]"
+                />
+                
+
+                {/* <RisingText 
+                  text={'myz-'}
                   className="leading-[.8]"
                 />
                 <RisingText 
                   text={'creative design agency'}
                   className="leading-[.8]"
-                />
+                /> */}
                 
                 
               </div>
-              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[840px] uppercase font-type-en text-4xl md:text-title font-thin ">
+              <div className="text-left mt-4 md:mt-14 ml-auto w-full max-w-[800px] font-type-en text-3xl md:text-7xl font-thin ">
 
                 <RisingText 
-                  text={'i wish award we\'ll make it'}
+                  text={'Your business was built to succeed.'}
                   className="font-type-1 text-stroke-[1px] text-stroke-gray-500 text-stroke-fill-transparent leading-[.75]"
                   textClassName="leading- pt-3 pl-1 italic"
                 />
@@ -162,16 +185,16 @@ export default function MainIntro () {
                 className={'border-t pt-6 md:pt-12 mt-6 md:mt-12 ml-auto w-full '}
               >
                 <div className="max-w-[540px]">
-                  <RisingText text={'우리는 창작을 사랑합니다. 애증과도 같은 관계죠. 창작의 과정을 통해 훌륭한 프로젝트를 완성하는 경험으로 여러분과 함께 성장하고 발전해 나가고 싶습니다.'} startDelay={100} className="text-xl md:text-2xl"/>
+                  <RisingText text={'우리는 브랜딩을 ‘표현’을 넘어선, 비즈니스의 확장으로 이해합니다. '} startDelay={100} className="text-xl md:text-2xl"/>
                 </div>
               </animated.div>
 
               
               <animated.div 
                 style={motion(2)}
-                className={'mt-8 w-full max-w-[320px]'}
+                className={'mt-8 w-full max-w-[520px]'}
               >
-                <RisingText text={'기존에 없던 희소성이 짙은 새로움을 추구합니다. 새로운 디자인, 새로운 콘텐츠, 새로운 기술들을 통한 창의적인 결과물을 만들어 냅니다. 고객의 니즈를 반영해 트렌디하고 새로운 창작물을 만드는데 최선을 다 할 것입니다.'} startDelay={100} className="text-"/>
+                <RisingText text={'빠르게 변화하는 시장 환경 속, 브랜딩은 단순한 노출 수단을 넘어 비즈니스의 본질을 드러내는 핵심 도구로 자리 잡았습니다. 과거, 물자와 자원의 부족으로 인해 공급 자체가 경쟁력이던 시절이 있었습니다. 그러나 지금은 공급 과잉의 시대. 수많은 상품과 서비스가 동시에 소비자의 선택을 기다리는 경쟁 환경 속에서, 이제 브랜딩은 단순히 제품을 노출하는 것을 넘어, "왜 수많은 선택지 속에서 반드시 이 브랜드여야만 하는가?"를 증명하는 논리적이고 체계적인 과정이 되었습니다.'} startDelay={100} className="leading-7"/>
               </animated.div>
 
 
@@ -197,13 +220,6 @@ export default function MainIntro () {
               </div>
             </animated.div>
 
-            {/* <animated.div 
-              style={motion(2)}
-              className={'break-keep'}
-            >
-              <RisingText text={'어떤 서비스가 필요하신가요? 비즈니스에 필요로하는 요구를 충족시켜 드립니다. 전문가들의 가장 최고의 팀워크. 여러분들의 상상을 현실로 만들어 드립니다.'} startDelay={200}/>
-
-            </animated.div> */}
           </div>
           
         </div>
@@ -213,18 +229,26 @@ export default function MainIntro () {
 
       <div className="w-full flex justify-center relative">
         <div className="overflow-hidden w-full  relative">
-          <div className="aspect-[1/1.5]- min-h-[100dvh]">
-          <animated.div
-            style={{
-              ...springs[1],
-              /* scale: spring.per.to(progress=> {
-                return 1+progress
-              }) */
-            }}
-            className={`absolute top-[-50%] left-0 w-full h-full`}
-          >
-            <img src={banner_1} alt="" className="w-full h-full object-cover" />
-          </animated.div>
+          <div className=" min-h-[100dvh]">
+            <animated.div
+              style={{
+                ...springs[1],
+                scale: spring.per.to(progress=> {
+                  return progress+.35
+                })
+              }}
+              className={`absolute top-[-50%] left-0 w-full h-full overflow-hidden`}
+            >
+              <animated.img 
+                src={banner_1} alt="" className="w-full h-full object-cover" 
+                style={{
+                  scale: spring.per.to(progress=> {
+                    // console.log(progress)
+                    return 1/(progress+.35)
+                  })
+                }}
+              />
+            </animated.div>
           </div>
         </div>
       </div>

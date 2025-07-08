@@ -3,20 +3,13 @@ import AdminLogin from "~/layout/admin/login/AdminLogin";
 import { Await, defer, useLoaderData, useOutletContext } from "@remix-run/react";
 // import { loader } from "./admin";
 import { useAsyncError } from "@remix-run/react";
-/* export const loader = async () => {
-  
-  const slowData = new Promise((resolve) => {
-    setTimeout(() => resolve("Loaded after 2 seconds"), 2000); // 3초 지연
-  });
+import { LoaderFunctionArgs } from "@remix-run/node";
+import AdminLogin1 from "~/layout/admin/login/Login";
 
-  return defer({
-    data: slowData,
-  });
-}; */
 
 export default function AdminLoginRoute () {
-  // const { data }:any = useLoaderData<typeof loader>();
 
+  const { domain } = useOutletContext<any>();
   // const { data }:any = useOutletContext<typeof loader>();
   // console.log('rootData', data)
   // const error:any = useAsyncError();
@@ -26,7 +19,7 @@ export default function AdminLoginRoute () {
     {/* <Suspense fallback={<div className="w-full h-dvh bg-blue-400">Loading data...</div>}> */}
       {/* <Await resolve={data}> */}
         {/* {(resolvedData) => resolvedData && <AdminLogin />} */}
-        <AdminLogin/>
+        {/* <AdminLogin1 domain={domain}/> */}
       {/* </Await> */}
     {/* </Suspense> */}
     </>
