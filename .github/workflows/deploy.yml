@@ -91,4 +91,5 @@ jobs:
             # rm -rf /tmp/* || true
             rm -rf node_modules || exit 1
             pnpm install --frozen-lockfile
-            pm2 reload mymyz || pm2 start "pnpm start" --name mymyz
+            # pm2 reload mymyz || pm2 start "pnpm start" --name mymyz
+            pm2 reload mymyz || pm2 start pnpm --name mymyz -- start
