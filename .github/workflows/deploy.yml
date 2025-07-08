@@ -89,6 +89,6 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             # export NODE_OPTIONS="--max_old_space_size=512"
             # rm -rf /tmp/* || true
-            # rm -rf node_modules || exit 1
-            # pnpm install --frozen-lockfile
+            rm -rf node_modules || exit 1
+            pnpm install --frozen-lockfile
             pm2 reload mymyz || pm2 start "pnpm start" --name mymyz
