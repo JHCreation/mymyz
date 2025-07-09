@@ -15,7 +15,7 @@ const meta: MetaFunction = () => {
     { property: "og:site_name", content: "마이즈", },
     { property: "og:title", content: "브랜드 중심 마케팅 스튜디오 | 마이즈", },
     { property: "og:url", content: "https://www.m-y-z.com/", },
-    { property: "og:image", content: "/myz.svg", },
+    { property: "og:image", content: "/myz.png", },
     { property: "og:description", content: "마케팅·콘텐츠·브랜딩·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
     { property: "twitter:card", content: "summary", },
     { property: "twitter:site", content: "@myz", },
@@ -23,7 +23,7 @@ const meta: MetaFunction = () => {
     { property: "twitter:url", content: "https://www.m-y-z.com/", },
     { property: "twitter:title", content: "브랜드 중심 마케팅 스튜디오 | 마이즈", },
     { property: "twitter:description", content: "마케팅·콘텐츠·브랜딩·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
-    { property: "twitter:image", content: "/myz.svg", },
+    { property: "twitter:image", content: "/myz.png", },
     
     {
       "script:ld+json": {

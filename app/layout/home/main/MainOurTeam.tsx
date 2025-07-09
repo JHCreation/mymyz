@@ -107,7 +107,7 @@ export default function MainOurTeam () {
                 <animated.div key={i} style={springsCard[i]} >
                   <div 
                     ref={itemRef}
-                    className="absolute text-white bg-[#2b1701]/40 backdrop-blur-sm w-[70%] md:w-[30%]" 
+                    className="md:min-w-[350px] absolute text-white bg-[#2b1701]/40 backdrop-blur-sm w-[70%] sm:w-1/2 md:w-[30%]" 
                     style={{ 
                       // width: `${30}%`,
                       top: `calc( (${box?.height}px - ${item?.height}px) / ${len} * ${i})`, 
@@ -121,7 +121,7 @@ export default function MainOurTeam () {
                           <div className="w-full max-w-[54px] md:max-w-[130px]">
                             <img src={val.img} alt="" />
                           </div>
-                          <p className="font-[] text-xl md:text-4xl font-black ml-2 md:ml-4">{val.name}</p>
+                          <p className="text-xl md:text-4xl font-black ml-2 md:ml-4 min-w-[80px]-">{val.name}</p>
                         </div>
                         <div className="flex-1 flex flex-col justify-end">
                           <div className="mt-2 md:mt-5">
