@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useState } from "react";
-import useSchemas from "~/api/category/useSchemas";
 import GridData from "../_grid/GridData";
 import { InputWrap } from "../_grid/(filters)/Fitlers";
 import FilterInput from "../_grid/(filters)/FilterInput";
@@ -15,10 +14,10 @@ export default function Category () {
       <Suspense fallback={<div>Loading...</div>}>
         <GridData
           useSchema={useSchema}
-          useSchemas={useSchemas}
           queryOptions={queryOptions} 
           filterComponent={FilterComponent}
           idKey={'key'}
+          idName="id"
         />
       </Suspense>
     </div>

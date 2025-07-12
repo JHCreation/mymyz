@@ -9,9 +9,9 @@ import { ToastContainer, toast, cssTransition, Id, ToastOptions } from 'react-to
 import { toasterConfirm, toaster } from "@/components/ui/Toast";
 import _ from 'lodash';
 import { isEmptyArray } from "@/utils/validate/utility";
-import { DataListContext } from "./GridDataType";
+import { DataListContext } from "../GridDataType";
 import Dialog from "~/components/ui/Dialog";
-import { CloseIcon } from "./comps";
+import { CloseIcon } from "../comps";
 import { authorization } from "~/api/auth/useAuth";
 import { useNavigate } from "@remix-run/react";
 

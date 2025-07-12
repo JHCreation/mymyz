@@ -84,8 +84,6 @@ export default useSchema
 
 
 const getSchema = ({tableName, category, method, data}:UseSchemaProp & { category: any }) => {
-    console.log(category, data)
-
     const schema= defineFields({
         id: {
             key: 'id',

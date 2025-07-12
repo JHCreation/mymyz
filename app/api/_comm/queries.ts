@@ -136,7 +136,6 @@ class CommQuery<T> {
         // next: { revalidate: 10 }
       } 
     })
-    console.log(res)
     return res?.data as T
   }
 

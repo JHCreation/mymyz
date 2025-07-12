@@ -21,7 +21,7 @@ export interface UseSchema<T> {
     (args:UseSchemaProp): FieldsSchema<T>
 }
 
-type BasicFieldTypeKey= 'text'|'file'|'hidden'|'text-array'
+type BasicFieldTypeKey= 'text'|'file'|'hidden'|'text-array'|'editor'
 type SelectFieldTypeKey = 'checkbox'|'radio'|'select'|'toggle'
 type FileFieldTypeKey = 'file'
 type FieldTypeKey= BasicFieldTypeKey | SelectFieldTypeKey | FileFieldTypeKey

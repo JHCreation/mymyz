@@ -34,7 +34,7 @@ const toastDelete:DataToasterType= {
   option: toastOpt,
   id: toastDeleteId
 }
-export default function Delete ({ checked, deleteOn, setDeleteOn, schema, setSchema }) {
+export default function Delete ({ checked, deleteOn, setDeleteOn }) {
   const context= useContext(DataListContext);
   if( !context ) throw new Error('cannot find DataListContext')
   const {filterId, filters, setFilters, defaultFilters, category, page, setPage, pageSize, log, setLog, queryOptions, reload, tableName}= context;
@@ -179,11 +179,6 @@ export default function Delete ({ checked, deleteOn, setDeleteOn, schema, setSch
 
   const submit= (log)=> {
     const data= checked
-    // setStatus('pending')
-    // fileDelete({log, data});
-    // return;
-    // toaster.loading({text: "처리중입니다..."}, { ...toastOpt, toastId: toastDeleteId })
-    // mutationDelete.mutate({ data, access_token: log?.access_token })
     authorization({ 
       log, 
       setLog,
@@ -211,7 +206,6 @@ export default function Delete ({ checked, deleteOn, setDeleteOn, schema, setSch
 
 
   useEffect(()=> {
-    console.log(deleteOn)
     if( deleteOn ) {
 
       if( !checked.length ) {

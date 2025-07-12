@@ -8,7 +8,7 @@ import { authorization } from "~/api/auth/useAuth";
 export default function AuthGuard ({ children, domain, fix }: { children, domain:string, fix?: boolean }) {
     const { log, setLog }= useLogState()
     
-    console.log('only Client!!!', log)
+    // console.log('only Client!!!', log)
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const location= useLocation()
@@ -73,7 +73,7 @@ export default function AuthGuard ({ children, domain, fix }: { children, domain
 
     // if (isLoading) return <div className="h-dvh"><Loading/></div>;
     // if (isError) return null; // 이동 중
-    console.log(log)
+    // console.log(log)
     if( fix ) return <>
       {children}
     </>

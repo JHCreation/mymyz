@@ -34,7 +34,7 @@ export default function FileField({ name, idKey, defaultValues }:FieldProps) {
         }
     }, [edit, defaultValues, linkKey, setValue]);
 
-    console.log('File Fields: ',defaultValues, schema[name], schema,name)
+    // console.log('File Fields: ',defaultValues, schema[name], schema,name)
     
     return (
         <fieldset className={`fieldset border px-4 rounded-md ${cn({'border-error border-1': errors[name]})}`} >
@@ -162,18 +162,18 @@ function EditableFileInput({ name, idKey, defaultValues, edit }:FieldProps & { e
     }, [fileValue, setValue]);
 
     useEffect(()=> {
-        console.log('edit 변화 감지')
+        // console.log('edit 변화 감지')
         
         if( edit ){
             // setValue(linkKey, [], { shouldValidate: true, shouldTouch: false })
-            console.log('파일 초기화', name)
+            // console.log('파일 초기화', name)
             field.onBlur()
             setValue(name, [], { shouldValidate: true, shouldTouch: true })
             setDropOver(false);
         }
     }, [edit])
     
-    console.log(getValues(), fileValue, error)
+    // console.log(getValues(), fileValue, error)
     return (
         <>
             <div

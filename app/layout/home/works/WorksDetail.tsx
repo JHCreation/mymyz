@@ -131,7 +131,7 @@ export const Detail = ({ data:res, isLoading, open, onClose, isClient })=> {
               </MagneticCursor>
             </div>
           </div>
-          <ReactLenis className="modal-box- rounded-none w-full max-w-[800px] scale-100 max-h-full bg-transparent shadow-none p-0 mx-auto pointer-events-auto my-auto h-full" >
+          <ReactLenis className="modal-box- overflow-y-auto overscroll-contain rounded-none w-full max-w-[800px] scale-100 max-h-full bg-transparent shadow-none p-0 mx-auto pointer-events-auto my-auto h-full" >
           
             {/* <div className="bg-base-100"></div> */}
             <div className="bg-base-100 w-full min-h-[calc(100dvh-5rem)] relative mx-auto ">

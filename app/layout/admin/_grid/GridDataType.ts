@@ -15,7 +15,7 @@ interface DataListContextType {
   filters: FiltersType
   setFilters: Dispatch<SetStateAction<FiltersType>>
   defaultFilters: FiltersType
-  useSchemas: (prop:any)=>DefaultSchema
+  // useSchemas: (prop:any)=>DefaultSchema
   useSchema: UseSchema<any>
   category: Category[]
   page: Page
@@ -32,6 +32,7 @@ interface DataListContextType {
   reload: ({filters, page, pageSize}:{filters:FiltersType, page:Page, pageSize:Page})=>void
   checked: any[]
   idKey: string
+  idName?: string
 } 
 
 export const DataListContext = createContext<DataListContextType|null>(null);

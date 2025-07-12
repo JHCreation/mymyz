@@ -13,15 +13,18 @@ const scrolls= new SectionScroll({})
 const snsLink= [
   {
     name: 'Instagram',
-    to: 'https://www.instagram.com/myz'
+    to: 'https://www.instagram.com/myz',
+    target: '_blank',
   },
   {
-    name: 'Thread',
-    to: 'https://www.threads.net/@myz'
+    name: 'Kakao',
+    to: 'https://open.kakao.com/o/sU1yawGh',
+    target: '_blank',
   },
   {
     name: 'Email',
-    to: 'mailto:corenzomarket@naver.com'
+    to: 'mailto:corenzomarket@naver.com',
+    target: '_self',
   },
 ]
 
@@ -79,7 +82,7 @@ export default function Footer ({transition, menuClick}) {
                   {
                     snsLink.map((v,i)=> {
                       return <LinkText_2 key={v.name} className='flex-1 md:px-2 py-1 border-b'>
-                        <a href={v.to} target="_blank" className="custom-hover">
+                        <a href={v.to} target={v.target} className="custom-hover">
                           <div className="relative flex items-center justify-between group-hover:text-white group-hover:px-2 duration-200 ">
                             
                               <MagneticCursor className="">
@@ -104,7 +107,7 @@ export default function Footer ({transition, menuClick}) {
               <div className="border-b pl-0 md:px-2 py-1 ">
                 Menu :
               </div>
-              <ul className="text-4xl md:text-[20svh] md:leading-none">
+              <ul className="text-4xl md:text-[9em] md:leading-none">
                 {
                   route.map(link=> <li key={link.to} className="border-b py-2 md:py-0">
                     <MagneticCursor className="inline-block custom-hover-lg">

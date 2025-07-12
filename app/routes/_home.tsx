@@ -5,9 +5,9 @@ import HomeWrapper from "~/layout/home/HomeWrapper";
 import { LoaderFunction, MetaFunction } from "@remix-run/node";
 const meta: MetaFunction = () => {
   return [
-    { title: "마이즈 | 브랜드 중심 마케팅 · 콘텐츠 · 브랜딩 · 공간 디자인" },
-    { name: "description", content: "콘텐츠 기획부터 브랜딩, 마케팅, 공간 디자인까지 — 브랜드의 철학을 시각화하고 전환을 설계하는 통합 마케팅 스튜디오입니다." },
-    { name: "keywords", content: "마케팅 대행사, 콘텐츠 전략, 브랜드 마케팅, 브랜딩 디자인, VMD, 공간 기획, 콘텐츠 에디터, 디지털 마케팅, BI 디자인" },
+    { title: "마이즈 | 브랜드 중심 마케팅 · 콘텐츠 · 브랜딩 · 웹개발 · 공간 디자인" },
+    { name: "description", content: "콘텐츠 기획부터 브랜딩, 마케팅, 웹개발, 공간 디자인까지 — 브랜드의 철학을 시각화하고 전환을 설계하는 통합 마케팅 스튜디오입니다." },
+    { name: "keywords", content: "마케팅 대행사, 콘텐츠 전략, 브랜드 마케팅, 브랜딩 디자인, 웹개발, VMD, 공간 기획, 콘텐츠 에디터, 디지털 마케팅, BI 디자인" },
     { name: "msapplication-TileColor", content: "#da532c" },
     { name: "theme-color", content: "#ffffff" },
     { property: "fb:app_id", content: "1981556348739957", },
@@ -16,13 +16,13 @@ const meta: MetaFunction = () => {
     { property: "og:title", content: "브랜드 중심 마케팅 스튜디오 | 마이즈", },
     { property: "og:url", content: "https://www.m-y-z.com/", },
     { property: "og:image", content: "/myz.png", },
-    { property: "og:description", content: "마케팅·콘텐츠·브랜딩·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
+    { property: "og:description", content: "마케팅·콘텐츠·브랜딩·웹개발·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
     { property: "twitter:card", content: "summary", },
     { property: "twitter:site", content: "@myz", },
     { property: "twitter:creator", content: "@rainymanson", },
     { property: "twitter:url", content: "https://www.m-y-z.com/", },
     { property: "twitter:title", content: "브랜드 중심 마케팅 스튜디오 | 마이즈", },
-    { property: "twitter:description", content: "마케팅·콘텐츠·브랜딩·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
+    { property: "twitter:description", content: "마케팅·콘텐츠·브랜딩·웹개발·공간 디자인까지, 브랜드에 딱 맞는 전략을 만듭니다.", },
     { property: "twitter:image", content: "/myz.png", },
     
     {
@@ -32,7 +32,7 @@ const meta: MetaFunction = () => {
         "url": "https://www.m-y-z.com/",
         "name": "마이즈",
         "alternateName": "myz",
-        "description": "콘텐츠 기획, 마케팅 전략, 브랜딩 디자인, 공간 브랜딩 등 브랜드에 최적화된 통합 마케팅 솔루션을 제공합니다.",
+        "description": "콘텐츠 기획, 마케팅 전략, 브랜딩 디자인, 웹개발, 공간 브랜딩 등 브랜드에 최적화된 통합 마케팅 솔루션을 제공합니다.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "서울시 광진구",
@@ -79,7 +79,18 @@ export const loader: LoaderFunction = async ({ request }) => {
   return { isMobile };
 };
 
-
+console.info(`%c
+░▒▓██████████████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░    ░▒▓██▓▒░  
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░   ░▒▓██▓▒░    
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░    ░▒▓██▓▒░      
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓████████▓▒░
+%c브랜딩, 디자인, 풀스택 개발, Branding, Design, Fullstack`,
+  "color: #ecd000; ",
+  "color: #f8fdef; background: #419400; padding:8px 14px; monospace; margin-top: 10px; font-size: 14px; font-weight:400; border: 4px solid #f8fdef; border-left: none; border-right: none;"
+);
 export default function HomeLayout () {
   const { isMobile } = useLoaderData<any>()
   const location= useLocation()

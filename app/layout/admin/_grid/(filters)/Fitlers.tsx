@@ -27,15 +27,14 @@ export default function Filters ({ children }) {
   
 
   const handleInit= ()=> {
-    console.log('init click!:', init)
     setInit(true)
     setFilters(defaultFilters)
   }
   const [init, setInit]= useState<boolean>(false)
   useEffect(()=> {
-    console.log('init start!:', init)
+    // console.log('init start!:', init)
     return ()=> {
-      console.log('init end:', init)
+      // console.log('init end:', init)
       setInit(false)
     }
   }, [init]);

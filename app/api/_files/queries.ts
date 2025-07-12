@@ -107,16 +107,16 @@ class FilesQuery {
 }
 
 
-// export interface FileInfoType {
-//   id?: string
-//   method?: 'add'|'override'
-//   thumbnail?: string
-//   uploadFullPath?: string
-//   uploadRootPath?: string
-//   name: string
-//   uploadPath: string
-//   file: File
-// }
+export interface FileInfoType {
+  id?: string
+  method?: 'add'|'override'
+  thumbnail?: string
+  uploadFullPath?: string
+  uploadRootPath?: string
+  name: string
+  uploadPath: string
+  file: File
+}
 
 const handleFiles= async ({ url, name, fileInfo, access_token })=> {
   console.log(fileInfo)

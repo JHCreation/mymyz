@@ -22,6 +22,8 @@ import { Loading } from '~/components/ui/Loading';
 import { LogTypes } from '~/@types/user';
 import { DataToasterType, request, sortParams } from './Requests';
 import ToggleField from '~/components/fields/ToggleField';
+import EditorField from '~/components/fields/EditorField.client';
+// import EditorInput from '~/components/fields/EditorInput';
 
 const toastContainerId= 'categoryCreateToast';
 const toastCreateId= 'categoryCreate';
@@ -330,10 +332,13 @@ function CreateInput(props) {
                         type == 'toggle' && 
                         <ToggleField name={key} defaultValues={defaultValues}/>
                       }
+                      {
+                        type == 'editor' && 
+                        // <EditorInput name={key} defaultValues={defaultValues} toastOption={toastOpt}/>
+                        <EditorField name={key} defaultValues={defaultValues} toastOption={toastOpt}/>
+                      }
                       </>
                   }
-                  
-                 
                   
                   
                 </div>

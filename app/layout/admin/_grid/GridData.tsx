@@ -1,48 +1,29 @@
 
 import { useQuery, keepPreviousData, useMutation, UseMutationResult } from "@tanstack/react-query";
 import { Dispatch, SetStateAction, Suspense, createContext, useCallback, useContext, useRef } from 'react';
-
 import { useState, useEffect, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
 import { ColDef, ModuleRegistry, ValueFormatterParams, RowSelectionOptions, SelectionColumnDef } from 'ag-grid-community';
 import { AG_GRID_LOCALE_KR } from '../_grid/agGridLocal';
 import Pagination from '~/components/grid/Pagination';
-
 import { FiltersType, GroupFilterType, gqlFilters } from "@/utils/data/filterQry";
 import _ from "lodash";
-
 import AsideFilter from "../_grid/(filters)/AsideFilter";
 import { Loading } from "@/components/ui/Loading";
-import { useLogState } from "~/store/store";
-
+import { useCategoryState, useLogState } from "~/store/store";
 import Delete from "./Delete";
 import { CommList } from "~/@types/queryType";
 import { DataListContext } from "./GridDataType";
-
 import { TextFilterModule } from 'ag-grid-community'; 
 import { NumberFilterModule } from 'ag-grid-community'; 
 import { DateFilterModule } from 'ag-grid-community'; 
 import { CustomFilterModule } from 'ag-grid-community';
-import { HighlightChangesModule } from 'ag-grid-community'; 
-    
+import { HighlightChangesModule } from 'ag-grid-community';   
 import { AllCommunityModule, ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, themeBalham, } from 'ag-grid-community';
 import Create from "./Create";
 import Update from "./Update";
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-// ModuleRegistry.registerModules([ ClientSideRowModelModule, ValidationModule, LocaleModule, TextEditorModule, SelectEditorModule, TextFilterModule,NumberFilterModule, DateFilterModule, CustomFilterModule, HighlightChangesModule  ]);
-
-// Custom Cell Renderer (Display logos based on cell value)
-/* const CompanyLogoRenderer = (params: CustomCellRendererProps) => (
-  <span style={{ display: "flex", height: "100%", width: "100%", alignItems: "center" }}>{params.value && <img alt={`${params.value} Flag`} src={`https://www.ag-grid.com/example-assets/space-company-logos/${params.value.toLowerCase()}.png`} style={{display: "block", width: "25px", height: "auto", maxHeight: "50%", marginRight: "12px", filter: "brightness(1.1)"}} />}<p style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>{params.value}</p></span>
-); */
-
-/* Custom Cell Renderer (Display tick / cross in 'Successful' column) */
-/* const MissionResultRenderer = (params: CustomCellRendererProps) => (
-  <span style={{ display: "flex", justifyContent: "center", height: "100%", alignItems: "center"}}>{<img alt={`${params.value}`} src={`https://www.ag-grid.com/example-assets/icons/${params.value ? 'tick-in-circle' : 'cross-in-circle'}.png`} style={{width: "auto", height: "auto"}} />}</span>
-); */
-
-/* Format Date Cells */
 const dateFormatter = (params: ValueFormatterParams): string => {
   return new Date(params.value).toLocaleDateString("en-us", {
     weekday: "long",
@@ -52,14 +33,6 @@ const dateFormatter = (params: ValueFormatterParams): string => {
   });
 };
 
-
-type Page=number
-type SetPage= Dispatch<SetStateAction<number>>
-console.log('rendering')
-
-
-// export const DataListContext = createContext<DataListContextType|null>(null);
-// const filterId= `category-filters-${generateUID()}`;
 const filterId= `category-filters-test`;
 const defaultFilters:GroupFilterType= {
   type: "group",
@@ -83,14 +56,11 @@ interface GridDataProps {
   idKey: string
 }
 const size= 20
-export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filterComponent, idKey }) {
-  // const log= useRecoilValue(logState);
+export default function GridData<T> ({ useSchema, queryOptions, filterComponent, idKey, idName }) {
   const { log, setLog }= useLogState()
   const tableName= queryOptions.name;
   const [createOpen, setCreateOpen]= useState(false)
   const [updateOpen, setUpdateOpen]= useState(false)
-
-
   const [filters, setFilters]= useState<FiltersType>(defaultFilters)
 
   const [page, setPage]= useState<number>(1)
@@ -99,14 +69,8 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
   const mutation:any = useMutation({
     mutationFn
   })
+
   useEffect(()=> {
-    /* mutation.mutate({ 
-      data: filters, access_token: log?.access_token, 
-      // page: 0, size: pageSize 
-    }) */
-  }, [])
-  useEffect(()=> {
-    console.log( mutation.data )
     if( mutation.data ) setLists(mutation.data)
   }, [mutation])
 
@@ -116,23 +80,9 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
 
   const gridRef = useRef<AgGridReact>(null);
   
-  
-
-  /* const { queryKey, queryFn }= queryOptions.list(pageVal-1, sizeVal);
-  const { data } = useQuery({ 
-    queryKey, queryFn, 
-    staleTime: 15000, 
-    placeholderData: keepPreviousData,
-  }); */
-
   const [lists, setLists]= useState<CommList<T|any>>()
-
-
- 
-  // const lists:any= data;
-  const {schema, getDefaultSchema, setSchema, init, category, create}= useSchemas({
-    keyname: queryOptions.name, 
-  });
+  const { data: category }= useCategoryState()
+  const { schema }= useSchema({tableName})
 
   const [colDefs, setColDefs] = useState<ColDef[]>([]);
   
@@ -150,7 +100,7 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
   }, []);
   
   useMemo(()=> {
-    console.log(schema)
+    // console.log(schema)
     if( !schema ) return;
     const col= Object.keys(schema).map( (key):ColDef=> {
       return {
@@ -209,7 +159,6 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
       }
     )
 
-    // test
     const columns:ColDef[]= column.concat([
       ...col,
       {
@@ -223,21 +172,6 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
 
     setColDefs( columns )
   }, [schema, log])
-
-
-  
-  // Column Definitions: Defines & controls grid columns.
-
-  /* const defaultColDef = useMemo<ColDef>(() => {
-    return {
-      // filter: true,
-      // flex: 1,
-      editable: true,
-      cellDataType: false,
-      // autoHeight: true,
-      // width: 50,
-    };
-  }, []); */
  
   
   const [checked, setChecked]= useState([]);
@@ -246,7 +180,7 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
     const selectedRows = api.getSelectedRows();
     const selectedNodes = api.getSelectedNodes();
     setChecked(selectedRows)
-    console.log(selectedRows, selectedNodes)
+    // console.log(selectedRows, selectedNodes)
   }, []);
 
   const localeText = useMemo<{
@@ -255,14 +189,8 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
     return AG_GRID_LOCALE_KR;
   }, []);
 
-    
-  /* const navigate = useNavigate()
-  const refresh=()=> {
-    navigate('.', { replace: true })
-  } */
-
   const reload= useCallback(({filters, page, pageSize})=> {
-    console.log('debounce: ', filters, page, pageSize)
+    // console.log('debounce: ', filters, page, pageSize)
     setPage(1)
     mutation.mutate({ 
       data: filters, access_token: log?.access_token, 
@@ -294,42 +222,28 @@ export default function GridData<T> ({ useSchemas, useSchema, queryOptions, filt
       filterId, filters, setFilters, defaultFilters,
       tableName, 
       useSchema,
-      useSchemas,
       category: category,
       page, setPage,
       pageSize, setPageSize,
       log, setLog,
       queryOptions, reload, checked,
-      idKey,
+      idKey, idName,
     }}>
       <div className="hidden">
         {JSON.stringify(lists?.list)}
       </div>
-      <Delete 
-        checked={checked} deleteOn={deleteOn} setDeleteOn={setDeleteOn} 
-        // tableName={tableName}
-        schema={schema}
-        setSchema={setSchema}
-        // useSchemas={useSchemas}
-      />
+      <Delete checked={checked} deleteOn={deleteOn} setDeleteOn={setDeleteOn} />
       <Create open={createOpen} setOpen={setCreateOpen} />
       <Update
         open={Boolean(updateOpen)}
         data={updateOpen}
         setOpen={setUpdateOpen}
       />
-      {/* <div className="btn" onClick={e=> setOpen(true)}>click</div>
-      <Modal open={open} className="fixed top-0 left-0 w-full h-full">
-        <div className="">
-          <div className="">test</div>
-          <div className="btn" onClick={e=> setOpen(false)}>close</div>
-        </div>
-      </Modal> */}
+      
       <div className="w-full flex">
         <div className='w-full flex flex-col h-full my-10'>
           
           {
-             
             <div className="px-2">
               <div className="flex mt-2">
                 <div className="">

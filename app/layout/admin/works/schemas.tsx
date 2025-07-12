@@ -13,7 +13,6 @@ const useSchema:UseSchema<ReturnType<typeof getSchema> | null>= ({ tableName, me
         getCategory();
     }, [])
     const init= (defaultValue?:any)=> {
-        console.log('initing!')
         const defs = getSchema({tableName, category, method, data});
         let defaultValues;
         if( data ){
@@ -59,7 +58,6 @@ const useSchema:UseSchema<ReturnType<typeof getSchema> | null>= ({ tableName, me
         } else {
             defaultValues= _.mapValues(defs.schema, 'defaultValue')
         }
-        console.log(defaultValues)
 
         setSchema({
           schema: defs?.schema, 
@@ -84,8 +82,6 @@ export default useSchema
 
 
 const getSchema = ({tableName, category, method, data}:UseSchemaProp & { category: any }) => {
-    console.log(category, data)
-
     const schema= defineFields({
         id: {
             key: 'id',
@@ -102,21 +98,21 @@ const getSchema = ({tableName, category, method, data}:UseSchemaProp & { categor
             type: 'text',
             custom: CustomTest,
             defaultValue: guidQ1(),
-            validation: z.string().nonempty('비었다고.')
+            validation: z.string().nonempty('키값이 비었습니다.')
         },
         title: {
             key: 'title',
             name: '제목',
             type: 'text',
             defaultValue: null,
-            validation: z.string().nonempty('비음')
+            validation: z.string({ message:'제목을 입력하세요.' }).nonempty('제목을 입력하세요.')
         },
         subject: {
             key: 'subject',
             name: '주제',
             type: 'text',
             defaultValue: null,
-            validation: z.string().nonempty('비음')
+            validation: z.string({ message:'주제를 입력하세요.' }).nonempty('주제를 입력하세요.')
         },
         
         // status: {
@@ -134,9 +130,9 @@ const getSchema = ({tableName, category, method, data}:UseSchemaProp & { categor
         content: {
             key: 'content',
             name: '내용',
-            type: 'text',
+            type: 'editor',
             defaultValue: null,
-            validation: z.string().nonempty('빔')
+            validation: z.string({ message:'내용을 입력하세요.' }).nonempty('내용을 입력하세요.')
             // .max(2,'길어')
         },
         thumb: {

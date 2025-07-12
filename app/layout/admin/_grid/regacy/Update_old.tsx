@@ -16,9 +16,9 @@ import { toasterConfirm, toaster } from "@/components/ui/Toast";
 // import { useRouter } from "next/navigation";
 import { isEmptyArray } from "@/utils/validate/utility";
 
-import { DataListContext } from "./GridDataType";
+import { DataListContext } from "../GridDataType";
 import Dialog from "~/components/ui/Dialog";
-import { CloseIcon } from "./comps";
+import { CloseIcon } from "../comps";
 import { authorization } from "~/api/auth/useAuth";
 import { useNavigate } from "@remix-run/react";
 // import { authSubmit } from "./authSubmit";
@@ -34,16 +34,16 @@ export default function Update_old (props) {
 
   const context= useContext(DataListContext);
   if( !context ) throw new Error('cannot find DataListContext')
-  const {filterId, filters, setFilters, defaultFilters, useSchemas, category, page, setPage, pageSize, log, setLog, reload, queryOptions}= context;
+  const {filterId, filters, setFilters, defaultFilters, useSchema:useSchemas, category, page, setPage, pageSize, log, setLog, reload, queryOptions}= context;
 
   // const { log, setLog }= useLogState()
   // const log= useRecoilValue(logState);
 
   const { open, setOpen, keyname, data }= props;
-  const {schema, setSchema, getDefaultSchema, init}= useSchemas({
+  const {schema, setSchema, getDefaultSchema, init}:any= useSchemas({
     keyname: queryOptions.name, 
     option: { data }
-  });
+  } as any);
   const navigate= useNavigate()
 
   useEffect(()=> {

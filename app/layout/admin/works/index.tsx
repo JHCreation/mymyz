@@ -19,10 +19,10 @@ export default function AdminWorks () {
       {/* <Suspense fallback={<div>Loading...</div>}> */}
         <GridData<WorksList>
           useSchema={useSchema}
-          useSchemas={useSchemas}
           queryOptions={queryOptions} 
           filterComponent={FilterComponent}
           idKey={'key'}
+          idName={'id'}
         />
       {/* </Suspense> */}
     </div>

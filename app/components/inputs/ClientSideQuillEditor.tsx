@@ -11,7 +11,7 @@ import _ from 'lodash';
 import queryFiles from '~/api/_files/queryOption';
 import { useMutation } from '@tanstack/react-query';
 import { useEnv, useLogState } from '~/store/store';
-import { FileInfoType } from '~/api/_files/queries';
+import { type FileInfoType } from '~/api/_files/queries';
 import path from 'path-browserify';
 import { format } from 'date-fns';
 import { toasterConfirm, toaster } from "@/components/ui/Toast";

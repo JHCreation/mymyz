@@ -21,7 +21,7 @@ export default function Main({dehydratedState, init, setInit}) {
       // className={init ? '' : 'h-dvh overflow-hidden'}
       // className={'h-dvh overflow-hidden'}
     >
-    {!init && <Intro setOn={setInit} />}
+    {/* {!init && <Intro setOn={setInit} />} */}
       
     {/* <div className="mt-nav-m md:mt-nav"> */}
       <MainLogo />

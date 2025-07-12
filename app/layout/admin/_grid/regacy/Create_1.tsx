@@ -1,4 +1,3 @@
-import queryOptions from "@/api/category/queryOption";
 import queryFiles from "@/api/_files/queryOption";
 import useValidate from "@/api/hooks/useValidate";
 import { Inputs } from "@/components/inputs/Inputs";
@@ -10,13 +9,13 @@ import { ToastContainer, toast, cssTransition, Id, ToastOptions } from 'react-to
 import { toasterConfirm, toaster } from "@/components/ui/Toast";
 import _ from 'lodash';
 import { isEmptyArray } from "@/utils/validate/utility";
-import { DataListContext } from "./GridDataType";
+import { DataListContext } from "../GridDataType";
 import Dialog from "~/components/ui/Dialog";
-import { CloseIcon } from "./comps";
+import { CloseIcon } from "../comps";
 import { authorization } from "~/api/auth/useAuth";
 import { useNavigate } from "@remix-run/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Create_1_Input from "./Create";
+import Create_1_Input from "../Create";
 
 
 const toastContainerId= 'categoryCreateToast';

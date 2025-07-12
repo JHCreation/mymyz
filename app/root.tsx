@@ -65,7 +65,6 @@ const meta: MetaFunction = () => {
 };
 export { links, meta }
 
-console.log('roooooooooooooooot')
 
 const exception= [
   'admin',
