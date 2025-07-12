@@ -5,7 +5,7 @@ import { ScreenContext } from "../Layout1";
 import SectionScroll from "./SectionScroll";
 import { Rising2, RisingText } from "./RisingText";
 // import banner_1 from "/images/chani.jpg";
-import banner_1 from "~/assets/images/banner-1.jpg";
+import banner_1 from "~/assets/images/banner-1.webp";
 import { service } from "./Service";
 
 const text= "합리적인 가격"

@@ -113,11 +113,11 @@ export const service= [
 ]
 
 
-import banner_1 from "~/assets/images/banner-3.jpg";
-import banner_2 from "~/assets/images/banner-2.jpg";
-import banner_3 from "~/assets/images/banner-5.jpg";
-import banner_4 from "~/assets/images/banner-6.jpg";
-import banner_5 from "~/assets/images/banner-4.jpg";
+import banner_1 from "~/assets/images/banner-3.webp";
+import banner_2 from "~/assets/images/banner-2.webp";
+import banner_3 from "~/assets/images/banner-5.webp";
+import banner_4 from "~/assets/images/banner-6.webp";
+import banner_5 from "~/assets/images/banner-4.webp";
 
 
 export const howto= [
