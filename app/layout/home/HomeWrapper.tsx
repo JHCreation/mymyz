@@ -79,7 +79,7 @@ export default function HomeWrapper ({init, isMobile, children}) {
     <ScreenContext.Provider value={{screen: { width, height }, windowSize }}>
 
     <div 
-      // className={init ? '' : 'h-dvh overflow-hidden'} 
+      className={init ? '' : 'h-dvh overflow-hidden'} 
       data-theme="lemonade"
     >
       <div id="custom-root-id" className="fixed top-0 left-0 z-30 w-dvw" ref={body}>
