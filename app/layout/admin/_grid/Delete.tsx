@@ -88,7 +88,7 @@ export default function Delete ({ checked, deleteOn, setDeleteOn }) {
         
         if ( hasSuccess ) {
             toastDelete.instance.update(toastDelete.id, 
-              { text: '성공입니다.' },
+              { text: '삭제 되었습니다.' },
               { 
                 ...toastDelete.option,
                 type: "success", 
@@ -136,7 +136,7 @@ export default function Delete ({ checked, deleteOn, setDeleteOn }) {
         
       ]
       
-      toaster.loading({text: "파일요청 처리중입니다..."}, { ...toastOpt, toastId: toastFileDeleteId })
+      // toaster.loading({text: "파일요청 처리중입니다..."}, { ...toastOpt, toastId: toastFileDeleteId })
       const filePromisese= request({ 
         toaster : toastDelete,
         tasks: fileTasks,
@@ -144,31 +144,31 @@ export default function Delete ({ checked, deleteOn, setDeleteOn }) {
       Promise.all(filePromisese).then((res:any)=> {
         console.log(res, '파일 응답들')
         
-        if ( !res.error || res.error.length == 0 ) {
-            toaster.update(toastFileDeleteId, 
-              { text: '파일 처리 성공입니다.' },
-              { 
-                ...toastOpt, 
-                type: "success", 
-                isLoading: false, 
-                autoClose: 2000, 
-                hideProgressBar: true ,
-                // onClose: ()=> setStatus('edit')
-              }
-            )
-        }
+        // if ( !res.error || res.error.length == 0 ) {
+        //     toaster.update(toastFileDeleteId, 
+        //       { text: '파일 처리 성공입니다.' },
+        //       { 
+        //         ...toastOpt, 
+        //         type: "success", 
+        //         isLoading: false, 
+        //         autoClose: 2000, 
+        //         hideProgressBar: true ,
+        //         // onClose: ()=> setStatus('edit')
+        //       }
+        //     )
+        // }
 
-        if ( res.error && res.error.length > 0 ) {
-          toaster.error(
-            { text: '파일 전송에 문제가 생겼습니다.' },
-            { 
-              ...toastOpt, 
-              toastId: toastFileDeleteId,
-              type: "error", 
-              autoClose: 2000, 
-            }
-          )
-        }
+        // if ( res.error && res.error.length > 0 ) {
+        //   toaster.error(
+        //     { text: '파일 전송에 문제가 생겼습니다.' },
+        //     { 
+        //       ...toastOpt, 
+        //       toastId: toastFileDeleteId,
+        //       type: "error", 
+        //       autoClose: 2000, 
+        //     }
+        //   )
+        // }
       })
     }
     

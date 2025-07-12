@@ -30,3 +30,4 @@
 .ql-picker-item[data-value="GmarketSans"] { font-family: 'GmarketSans'; }
 .ql-font-Pretendard,
 .ql-picker-item[data-value="Pretendard"] { font-family: 'Pretendard'; }
+#editor-resizer .toolbar { z-index: 30;}

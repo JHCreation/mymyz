@@ -19,6 +19,8 @@ import { useController, useFormContext } from 'react-hook-form';
 import { cn } from '~/utils/style';
 import { DataListContext } from '~/layout/admin/_grid/GridDataType';
 import Quill from 'quill'
+import { authorization } from '~/api/auth/useAuth';
+import { useNavigate } from '@remix-run/react';
 if (!(Quill as any).__registered) {
   Quill.register('modules/magicUrl', MagicUrl)
   Quill.register('modules/resize', QuillResizeImage)
@@ -104,7 +106,7 @@ export default function EditorField({ name, defaultValues, toastOption
 
   const { control, schema }= useFields();
   const schemaItem:SchemaType= schema[name]
-  const { register, setValue, watch, formState: { errors } } = useFormContext()
+  const { register, setValue, getValues, watch, formState: { errors } } = useFormContext()
   const { 
       field,
       fieldState: { invalid, isTouched, isDirty, error, isValidating },
@@ -153,7 +155,8 @@ export default function EditorField({ name, defaultValues, toastOption
   //   Quill.register('modules/resize', QuillResizeImage);
   // }
   console.log(formValues, idName)
-  const { selectLocalImage } = useInsertImage({tableName, keyName: name, id: formValues[idKey as any], quill, toastOption})
+  const navigate= useNavigate()
+  const { selectLocalImage } = useInsertImage({tableName, keyName: name, idKey, id: formValues[idKey as any], quill, toastOption, navigate, getValues})
   
   
   React.useEffect(() => {
@@ -168,7 +171,7 @@ export default function EditorField({ name, defaultValues, toastOption
       // toolbar.addHandler('image', selectLocalImage);
       // (quill as any)._imageHandlerAttached = true;
       
-      quill.root.innerHTML= ''
+      quill.root.innerHTML= defaultValues?.[name] || ''
       quill.on('text-change', (delta, oldDelta, source) => {
         // console.log('Text change!');
         // console.log(quill.getText()); // Get text only
@@ -199,14 +202,14 @@ export default function EditorField({ name, defaultValues, toastOption
   return (
     
     <fieldset 
-        className={`fieldset border px-4 rounded-md 
+        className={`fieldset border px-4 pb-4 rounded-md 
             ${cn({ 
                 // 'border-error border-1': error,
                 // 'hidden': schemaItem?.hidden
             })}
         `}
     >
-        {/* <legend className="fieldset-legend px-2">{schemaItem?.name}</legend> */}
+        <legend className="fieldset-legend px-2">{schemaItem?.name}</legend>
         
         <div className="pt-2">
             
@@ -271,9 +274,8 @@ export default function EditorField({ name, defaultValues, toastOption
 }
 
 
-const useInsertImage= ({tableName, keyName, id, quill, toastOption})=> {
-  console.log('insert image init', id)
-  const { log }= useLogState()
+const useInsertImage= ({tableName, keyName, idKey, id, quill, toastOption, navigate, getValues})=> {
+  const { log, setLog }= useLogState()
   const { env }= useEnv()
   const { queryFn: mutationFilesFn }= queryFiles.upload();
   const mutationFiles = useMutation({
@@ -287,6 +289,8 @@ const useInsertImage= ({tableName, keyName, id, quill, toastOption})=> {
 
   // Upload Image to Image Server such as AWS S3, Cloudinary, Cloud Storage, etc..
   const saveToServer = async (file) => {
+    console.log('insert image init', id, getValues(idKey))
+    const idValue= getValues(idKey)
     const now= format(new Date(), 'yyyyMMddHHmmss');
     const ext= path.extname(file.name);
     // const ext= '/';
@@ -297,15 +301,28 @@ const useInsertImage= ({tableName, keyName, id, quill, toastOption})=> {
     const fileInfo:FileInfoType= {
       name: fileName,
       file,
-      uploadPath: `/${tableName}/${id}/${keyName}`
+      uploadPath: `/${tableName}/${idValue}/${keyName}`
     }
+    
 
-    mutationFiles.mutate({
-      fileDatas: {
-        file: [fileInfo]
+    authorization({ 
+      log, 
+      setLog,
+      valid: (log)=> {
+        mutationFiles.mutate({
+          fileDatas: {
+            file: [fileInfo]
+          },
+          access_token: log?.access_token
+        })
       },
-      access_token: log?.access_token
+      invalid: (log)=> {
+        toaster.error({text: '사용자 인증이 되지 않았습니다. 다시 로그인 해주세요.'}, { ...toastOption })
+        navigate('/login')
+      }
     })
+    
+    
 
   };
   useEffect(()=> {
@@ -327,6 +344,7 @@ const useInsertImage= ({tableName, keyName, id, quill, toastOption})=> {
     input.click();
 
     input.onchange = () => {
+
       if( !input?.files ) return 
       const file = input.files[0];
       console.log(input.files)

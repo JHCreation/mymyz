@@ -4,8 +4,7 @@ import { useEffect, useState } from "react"
 import { useRootContainer, useRootLenis } from "~/store/store"
 import { useLoaderData, useNavigate } from "@remix-run/react"
 import { animated, easings, useScroll, useSpring } from "@react-spring/web";
-import _, { delay } from "lodash"
-import { bg } from "date-fns/locale"
+import _ from "lodash"
 import { getWorksDetail } from "./getData"
 import { HydrationBoundary, useQuery } from "@tanstack/react-query"
 import queryOptions from "~/api/works/queryOption"
@@ -124,14 +123,14 @@ export const Detail = ({ data:res, isLoading, open, onClose, isClient })=> {
       <ContAni open={open}>
         
         <div className="relative h-dvh py-10 w-dvw px-2">
-          <div className="w-full max-w-[800px] absolute top-10 left-1/2 -translate-x-1/2 z-50">
+          <div className="w-full max-w-[calc(100%-64px)] absolute top-10 left-1/2 -translate-x-1/2 z-50">
             <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2">
               <MagneticCursor className="btn btn-circle custom-hover" onClick={onClose}>
                 <IconX size={20} className="font-thin"/>
               </MagneticCursor>
             </div>
           </div>
-          <ReactLenis className="modal-box- overflow-y-auto overscroll-contain rounded-none w-full max-w-[800px] scale-100 max-h-full bg-transparent shadow-none p-0 mx-auto pointer-events-auto my-auto h-full" >
+          <ReactLenis className="modal-box- overflow-y-auto overscroll-contain rounded-none w-full max-w-[800px]- scale-100 max-h-full bg-transparent shadow-none p-0 mx-auto pointer-events-auto my-auto h-full" >
           
             {/* <div className="bg-base-100"></div> */}
             <div className="bg-base-100 w-full min-h-[calc(100dvh-5rem)] relative mx-auto ">
